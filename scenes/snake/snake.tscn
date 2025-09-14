@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ckuxxn8xk07ap"]
+[gd_scene load_steps=5 format=3 uid="uid://ckuxxn8xk07ap"]
 
 [ext_resource type="Texture2D" uid="uid://bhc52hwe02yvd" path="res://scenes/snake/icon.svg" id="1_4ska3"]
 [ext_resource type="Script" uid="uid://crhs6chsfqnif" path="res://scenes/snake/snake.gd" id="1_uqw23"]
+[ext_resource type="Script" uid="uid://62ma08y4r4j3" path="res://components/player_grid_movement_C.gd" id="3_h1wbu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uqw23"]
 radius = 64.195
@@ -15,8 +16,11 @@ texture = ExtResource("1_4ska3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_uqw23")
 
-[node name="MoveTimer" type="Timer" parent="."]
+[node name="PlayerGridMovementC" type="Node" parent="." node_paths=PackedStringArray("movement_timer")]
+script = ExtResource("3_h1wbu")
+movement_timer = NodePath("../MovementTimer")
+metadata/_custom_type_script = "uid://62ma08y4r4j3"
+
+[node name="MovementTimer" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
-
-[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
