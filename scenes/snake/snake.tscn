@@ -5,22 +5,21 @@
 [ext_resource type="Script" uid="uid://62ma08y4r4j3" path="res://components/player_grid_movement_C.gd" id="3_h1wbu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uqw23"]
-radius = 64.195
+radius = 8.0
 
 [node name="Snake" type="CharacterBody2D"]
 script = ExtResource("1_uqw23")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+scale = Vector2(0.125, 0.125)
 texture = ExtResource("1_4ska3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
 shape = SubResource("CircleShape2D_uqw23")
 
-[node name="PlayerGridMovementC" type="Node" parent="." node_paths=PackedStringArray("movement_timer")]
+[node name="PlayerGridMovementC" type="Node" parent="."]
 script = ExtResource("3_h1wbu")
-movement_timer = NodePath("../MovementTimer")
+move_delay = 0.3
 metadata/_custom_type_script = "uid://62ma08y4r4j3"
-
-[node name="MovementTimer" type="Timer" parent="."]
-wait_time = 0.2
-autostart = true

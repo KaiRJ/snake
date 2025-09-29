@@ -4,10 +4,10 @@ class_name PlayerGridMovementC extends Node
 ## TODO detailed description
 
 ## The size of the tiles in the grid in pixels
-@export var tile_size := 64
+@export var tile_size := 16
 
-## Time to control the speed of the movement
-@export var movement_timer: Timer
+## The wait time (in seconds) for the timer used to delay movement
+@export var move_delay := 0.5
 
 ## Allows access to the parent of the component
 @onready var parent: CharacterBody2D = get_parent()
@@ -21,8 +21,16 @@ const directions = {"ui_up"   : Vector2.UP,
 ## The current direction
 var direction := Vector2.RIGHT
 
+## Time to control the speed of the movement
+var movement_timer := Timer.new()
+
 
 func _ready() -> void:
+	# Initialise and start the movement timer
+	movement_timer.wait_time = move_delay
+	movement_timer.autostart = true
+	movement_timer.one_shot = false
+	add_child(movement_timer)
 	movement_timer.timeout.connect(_on_movement_timer_timeout)
 
 
