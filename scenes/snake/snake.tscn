@@ -2,24 +2,25 @@
 
 [ext_resource type="Texture2D" uid="uid://bhc52hwe02yvd" path="res://scenes/snake/icon.svg" id="1_4ska3"]
 [ext_resource type="Script" uid="uid://crhs6chsfqnif" path="res://scenes/snake/snake.gd" id="1_uqw23"]
-[ext_resource type="Script" uid="uid://62ma08y4r4j3" path="res://components/player_grid_movement_C.gd" id="3_h1wbu"]
+[ext_resource type="PackedScene" uid="uid://bqoool8slo4fd" path="res://scenes/snake_body/snake_body.tscn" id="2_uqw23"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uqw23"]
 radius = 8.0
 
 [node name="Snake" type="CharacterBody2D"]
 script = ExtResource("1_uqw23")
+snake_body = ExtResource("2_uqw23")
+init_size = 5
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(8, 8)
+[node name="Head" type="Sprite2D" parent="."]
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("1_4ska3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8, 8)
 shape = SubResource("CircleShape2D_uqw23")
 
-[node name="PlayerGridMovementC" type="Node" parent="."]
-script = ExtResource("3_h1wbu")
-move_delay = 0.3
-metadata/_custom_type_script = "uid://62ma08y4r4j3"
+[node name="MovementTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Body" type="Node" parent="."]
