@@ -12,5 +12,6 @@ tile_set = ExtResource("1_iuonh")
 
 [node name="ItemManager" parent="." instance=ExtResource("2_k2fmo")]
 
-[node name="Snake" parent="." instance=ExtResource("1_hyk8p")]
+[node name="Snake" parent="." node_paths=PackedStringArray("tile_map_layer") instance=ExtResource("1_hyk8p")]
+tile_map_layer = NodePath("../TileMapLayer")
 init_size = 10
