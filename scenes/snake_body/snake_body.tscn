@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqoool8slo4fd"]
 
-[ext_resource type="Texture2D" uid="uid://bhc52hwe02yvd" path="res://scenes/snake/icon.svg" id="1_2arxw"]
+[ext_resource type="Texture2D" uid="uid://bhc52hwe02yvd" path="res://scenes/snake_manager/icon.svg" id="1_2arxw"]
 [ext_resource type="Script" uid="uid://dsb8hxldl84xl" path="res://scenes/snake_body/snake_body.gd" id="1_lybl8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lybl8"]

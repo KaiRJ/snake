@@ -13,7 +13,7 @@ config_version=5
 config/name="Snake"
 run/main_scene="uid://dk6ca2tumgk3g"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://scenes/snake/icon.svg"
+config/icon="res://scenes/snake_manager/icon.svg"
 
 [autoload]
 

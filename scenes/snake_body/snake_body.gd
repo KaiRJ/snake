@@ -20,5 +20,5 @@ func make_tail():
 
 func _on_area_entered(area: Area2D):
 	# Only care if its the head of the snake
-	if area.get_parent() is Snake:
+	if area.get_parent() is SnakeManager:
 		GameEvents.game_over()
