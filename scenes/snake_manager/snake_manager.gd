@@ -51,9 +51,10 @@ func _ready() -> void:
 	var tm_size := tm_rect.size
 	
 	# Set the initial position to center (plus offset of sprite)
-	# TODO bound to be a better way of doing this
-	var center = _tile_size * Vector2i(tm_size.x/2, tm_size.y/2)
-	var offset = Vector2i(_tile_size/2)
+	# TODO bound to be a better way of doing this (and combine it with the item_manager)
+	# maybe a global?
+	var center = _tile_size * (tm_size/2)
+	var offset = _tile_size/2
 	global_position = tm_origin + center + offset
 
 	# Need an initial new direction
@@ -61,7 +62,6 @@ func _ready() -> void:
 
 	# Create the initial snake
 	for i in range(init_size):
-		print(i)
 		add_new_head_infront_of_head()
 
 
@@ -125,6 +125,14 @@ func move_part_to_front(new_head: SnakeBody) -> void:
 	new_head.global_position = origin + (_current_direction * _tile_size)
 	snake_body_parts.push_front(new_head)
 
+
+## Returns the coordinates of all the snake body parts
+func get_snake_body_coordinates() -> Array[Vector2i]:
+	var snake_coords: Array[Vector2i]
+	for body in snake_body_parts:
+		snake_coords.append(body.global_position as Vector2i)
+	return snake_coords
+	
 
 ## Update the players position on timer timeout
 func _on_movement_timer_timeout() -> void:
