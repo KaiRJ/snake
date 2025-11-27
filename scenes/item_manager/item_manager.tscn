@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw4kbwucl4nci"]
+
+[ext_resource type="Script" uid="uid://c17g2krv38nqy" path="res://scenes/item_manager/item_manager.gd" id="1_52qs8"]
+
+[node name="ItemManager" type="Node"]
+script = ExtResource("1_52qs8")
+
+[node name="SpawnTimer" type="Timer" parent="."]
