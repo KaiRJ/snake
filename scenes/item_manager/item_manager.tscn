@@ -4,5 +4,7 @@
 
 [node name="ItemManager" type="Node"]
 script = ExtResource("1_52qs8")
+min_spawn_time = 10
+max_spawn_time = 20
 
 [node name="SpawnTimer" type="Timer" parent="."]

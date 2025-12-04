@@ -3,14 +3,12 @@ class_name ItemManager extends Node
 ##
 ## TODO detailed description
 
-## Array to hold all the different item types
-@export var items: Array[PackedScene]
 
 ## The TileMapLayer the snake is moving in
 @export var tile_map_layer: TileMapLayer
 
-## The snake manager to add items around
-@export var snake_manager: SnakeManager
+## The base item type
+@export var item: PackedScene
 
 ## The minimum sqawn time for an item
 @export var min_spawn_time := 5
@@ -32,36 +30,40 @@ func _ready() -> void:
 	var tm_tile_size := tile_map_layer.tile_set.tile_size
 	var offset = tm_tile_size/2
 	
-	
-	# Get the coordinates of ALL the squares
-	for x in range(tm_size.x - tm_origin.x):
-		for y in range(tm_size.y - tm_origin.y):
-			var coord: Vector2i = (Vector2i(x,y) * tm_tile_size) + offset
+	# Get the coordinates of ALL the squares (-2 for border)
+	for x in range(tm_size.x - tm_origin.x - 2):
+		for y in range(tm_size.y - tm_origin.y - 2):
+			var coord: Vector2i = (Vector2i(x+1,y+1) * tm_tile_size) + offset
 			_all_coordinates.append(coord)
 	
+	# Connect and start the spawn timer
 	$SpawnTimer.timeout.connect(_on_spawn_timer_timeout)
 	$SpawnTimer.start(randf_range(min_spawn_time, max_spawn_time))
-	
+
 
 ## Create an array of all the free coordinates available to spawn an item in
-func get_free_coordinates():
-	var snake_body_coords := snake_manager.get_snake_body_coordinates()
-	var free_coords = _all_coordinates.filter(
-		func(c): 
-			return not snake_body_coords.has(c)
-			)
+func get_free_coordinates() -> Array[Vector2i]:
+	var free_coords := _all_coordinates.duplicate()
+	
+	# Remove squares with snake bodies in them
+	for body in get_tree().get_nodes_in_group("snake"):
+		free_coords.erase(Vector2i(body.global_position))
+		
+	# Remove squares with items in them
+	for body in get_tree().get_nodes_in_group("item"):
+		free_coords.erase(Vector2i(body.global_position))
 			
 	return free_coords
-	
+
 
 ## Spawn a random item in a specific location
-func spawn_random_item(spawn_coords: Vector2i) -> void:
+func spawn_item(spawn_coords: Vector2i) -> void:
 	print("Spawning item")
-	print(spawn_coords)
-	
+	var new_item = item.instantiate() as Item
+	new_item.global_position = spawn_coords
+	add_child(new_item)
 
 
-func _on_spawn_timer_timeout():
-	var free_squares: Array[Vector2i] = get_free_coordinates()
-	spawn_random_item(free_squares.pick_random())
+func _on_spawn_timer_timeout() -> void:
+	spawn_item(get_free_coordinates().pick_random())
 	$SpawnTimer.start(randf_range(min_spawn_time, max_spawn_time))

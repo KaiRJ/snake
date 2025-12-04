@@ -94,7 +94,7 @@ func calculate_rotation(new_dir: Vector2i) -> float:
 
 
 ## Create a new head in front of the old head
-func add_new_head_infront_of_head() -> void:	
+func add_new_head_infront_of_head() -> void:
 	# instatiate a new snake body part and make it a head
 	var new_head := snake_body.instantiate() as SnakeBody
 	$Body.add_child(new_head)
@@ -124,14 +124,6 @@ func move_part_to_front(new_head: SnakeBody) -> void:
 	new_head.rotation = _current_rotation # Same rotation as the head
 	new_head.global_position = origin + (_current_direction * _tile_size)
 	snake_body_parts.push_front(new_head)
-
-
-## Returns the coordinates of all the snake body parts
-func get_snake_body_coordinates() -> Array[Vector2i]:
-	var snake_coords: Array[Vector2i]
-	for body in snake_body_parts:
-		snake_coords.append(body.global_position as Vector2i)
-	return snake_coords
 	
 
 ## Update the players position on timer timeout
