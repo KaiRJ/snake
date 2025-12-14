@@ -21,6 +21,9 @@ const DIRECTIONS = {"ui_up"   : Vector2i.UP,
 ## Array to hold and track all the snake body parts
 var snake_body_parts: Array[SnakeBody]
 
+## Move the tail to the front or create a new head
+var move_tail := true
+
 ## Size of the tiles used in TILE_MAP
 var _tile_size: Vector2i
 
@@ -60,9 +63,11 @@ func _ready() -> void:
 	# Need an initial new direction
 	_new_direction = _current_direction
 
-	# Create the initial snake
+	# Instantiate a new snake body part and make it a head
 	for i in range(init_size):
-		add_new_head_infront_of_head()
+		var new_head := snake_body.instantiate() as SnakeBody
+		$Body.add_child(new_head)
+		move_part_to_front(new_head)
 
 
 func _physics_process(_delta: float) -> void:
@@ -93,23 +98,6 @@ func calculate_rotation(new_dir: Vector2i) -> float:
 		return (new_dir.y * _current_direction.x) * PI/2
 
 
-## Create a new head in front of the old head
-func add_new_head_infront_of_head() -> void:
-	# instatiate a new snake body part and make it a head
-	var new_head := snake_body.instantiate() as SnakeBody
-	$Body.add_child(new_head)
-	move_part_to_front(new_head)
-
-
-## Remove the current snake tail and make the new last body part a tail
-func move_tail_infront_of_head() -> void:
-	# make current tail the new snake head
-	var new_head = snake_body_parts.pop_back()
-	new_head.make_head()
-	move_part_to_front(new_head)
-	snake_body_parts.back().make_tail() # replace the tail
-
-
 ## Move an instance of a SnakeBody to the front of the snake
 func move_part_to_front(new_head: SnakeBody) -> void:
 	# If there is no head currently then use the position of the SnakeManager
@@ -129,4 +117,14 @@ func move_part_to_front(new_head: SnakeBody) -> void:
 ## Update the players position on timer timeout
 func _on_movement_timer_timeout() -> void:
 	update_rotation_and_direciton()
-	move_tail_infront_of_head()
+	
+	var new_head: SnakeBody
+	if move_tail: # make the current tail the head
+		new_head = snake_body_parts.pop_back()
+		snake_body_parts.back().make_tail() # replace the tail
+	else: # instantiate a new head
+		new_head = snake_body.instantiate()
+		$Body.add_child(new_head)
+	
+	move_part_to_front(new_head)
+	move_tail = true
