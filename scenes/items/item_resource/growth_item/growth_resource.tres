@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="GrowthItem" load_steps=3 format=3 uid="uid://cyohq73so5pn5"]
+
+[ext_resource type="Texture2D" uid="uid://bhc52hwe02yvd" path="res://scenes/snake_manager/icon.svg" id="1_qidmm"]
+[ext_resource type="Script" uid="uid://b1n1x0ht46wtg" path="res://scenes/items/item_resource/growth_item/growth_item.gd" id="2_5phtu"]
+
+[resource]
+script = ExtResource("2_5phtu")
+item_name = "Growth"
+icon = ExtResource("1_qidmm")
+score = 10
+metadata/_custom_type_script = "uid://b1n1x0ht46wtg"
