@@ -23,6 +23,9 @@ extends Node
 ## The maximum sqawn time for an item
 @export var max_spawn_time := 10
 
+## Variable to hold the total score from all the items picked up
+var total_score: int = 0
+
 ## Variable to hold all the coordinents of the grid
 var _all_coordinates: Array[Vector2i]
 
@@ -65,13 +68,17 @@ func get_free_coordinates() -> Array[Vector2i]:
 
 ## Spawn a random item in a specific location
 func spawn_item(spawn_coords: Vector2i) -> void:
-	print("Spawning item")
 	var new_item = item.instantiate() as Item
 	new_item.global_position = spawn_coords
 	new_item.item_type = item_types.pick_random()
+	new_item.picked_up.connect(_on_item_picked_up)
 	add_child(new_item)
 
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_item(get_free_coordinates().pick_random())
 	$SpawnTimer.start(randf_range(min_spawn_time, max_spawn_time))
+	
+
+func _on_item_picked_up(score):
+	total_score += score

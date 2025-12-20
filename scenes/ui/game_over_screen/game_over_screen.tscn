@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://3fylcjfjep4d"]
 
-[ext_resource type="Script" uid="uid://cqsorbwue5oka" path="res://scenes/ui/game_over_screen.gd" id="1_dnrai"]
+[ext_resource type="Script" uid="uid://cqsorbwue5oka" path="res://scenes/ui/game_over_screen/game_over_screen.gd" id="1_dnrai"]
 
 [node name="GameOverScreen" type="CanvasLayer"]
 process_mode = 3
