@@ -1,7 +1,10 @@
-class_name SnakeManager extends Node2D
+class_name SnakeManager 
+extends Node2D
 ## Scene to hold and manage snake body parts.
 ##
-## TODO detailed description
+## This scene stores each snake body part and controls the movement of them in 
+## the game. 
+##
 
 ## The snake body scene
 @export var snake_body: PackedScene

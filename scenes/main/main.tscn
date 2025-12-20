@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://dk6ca2tumgk3g"]
+[gd_scene load_steps=7 format=4 uid="uid://dk6ca2tumgk3g"]
 
 [ext_resource type="TileSet" uid="uid://byqmihc3uylv6" path="res://resources/tileset.tres" id="1_iuonh"]
 [ext_resource type="PackedScene" uid="uid://37v6ted0rt2t" path="res://scenes/map_bounds/map_bounds.tscn" id="2_6q06x"]
 [ext_resource type="PackedScene" uid="uid://bw4kbwucl4nci" path="res://scenes/item_manager/item_manager.tscn" id="2_k2fmo"]
 [ext_resource type="PackedScene" uid="uid://ckuxxn8xk07ap" path="res://scenes/snake_manager/snake_manager.tscn" id="3_k2fmo"]
-[ext_resource type="PackedScene" uid="uid://dp4lgygdp1f51" path="res://scenes/items/item/item.tscn" id="3_l3cfh"]
+[ext_resource type="Script" uid="uid://d3bi5mgkgcc44" path="res://scenes/items/item_resource/item_resource.gd" id="4_hujxm"]
+[ext_resource type="Resource" uid="uid://cyohq73so5pn5" path="res://scenes/items/item_resource/growth_item/growth_resource.tres" id="5_yyfjg"]
 
 [node name="Main" type="Node"]
 
@@ -16,13 +17,10 @@ tile_set = ExtResource("1_iuonh")
 
 [node name="ItemManager" parent="." node_paths=PackedStringArray("tile_map_layer") instance=ExtResource("2_k2fmo")]
 tile_map_layer = NodePath("../TileMapLayer")
-item = ExtResource("3_l3cfh")
+item_types = Array[ExtResource("4_hujxm")]([ExtResource("5_yyfjg")])
 min_spawn_time = 3
 max_spawn_time = 5
 
 [node name="SnakeManager" parent="." node_paths=PackedStringArray("tile_map_layer") instance=ExtResource("3_k2fmo")]
 tile_map_layer = NodePath("../TileMapLayer")
 init_size = 5
-
-[node name="Item" parent="." instance=ExtResource("3_l3cfh")]
-position = Vector2(400, 160)

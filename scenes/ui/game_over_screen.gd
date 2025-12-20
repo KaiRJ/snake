@@ -1,4 +1,10 @@
-class_name GameOverScreen extends CanvasLayer
+class_name GameOverScreen 
+extends CanvasLayer
+## The game over screen scene for prompting the player to restart/quit.
+##
+## This scene pauses the game and shows the player the game over screen, which
+## they can interact with.
+##
 
 
 func _ready() -> void:

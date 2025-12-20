@@ -1,7 +1,11 @@
-class_name ItemManager extends Node
+class_name ItemManager 
+extends Node
 ## Scene to manage the spawning of the items.
 ##
-## TODO detailed description
+## This scene randomly picks a spawn time between min_spawn_time and 
+## max_spawn_time, and after this time spawns an random item from the array
+## item_types on the map.
+##
 
 
 ## The TileMapLayer the snake is moving in
@@ -9,6 +13,9 @@ class_name ItemManager extends Node
 
 ## The base item type
 @export var item: PackedScene
+
+## Resources for the different types of item
+@export var item_types: Array[ItemResource]
 
 ## The minimum sqawn time for an item
 @export var min_spawn_time := 5
@@ -61,6 +68,7 @@ func spawn_item(spawn_coords: Vector2i) -> void:
 	print("Spawning item")
 	var new_item = item.instantiate() as Item
 	new_item.global_position = spawn_coords
+	new_item.item_type = item_types.pick_random()
 	add_child(new_item)
 
 
