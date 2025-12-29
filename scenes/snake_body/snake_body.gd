@@ -36,5 +36,5 @@ func make_tail():
 func _on_area_entered(area: Area2D):
 	if area.get_parent() is SnakeBody:
 		if (isHead): # to make sure game over is only called once
-			GameEvents.game_over()
+			GameEvents.game_over.emit()
 		

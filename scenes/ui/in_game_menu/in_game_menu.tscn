@@ -1,10 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://3fylcjfjep4d"]
 
-[ext_resource type="Script" uid="uid://cqsorbwue5oka" path="res://scenes/ui/game_over_screen/game_over_screen.gd" id="1_dnrai"]
+[ext_resource type="Script" uid="uid://cqsorbwue5oka" path="res://scenes/ui/in_game_menu/in_game_menu.gd" id="1_wk176"]
 
-[node name="GameOverScreen" type="CanvasLayer"]
+[node name="InGameMenu" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_dnrai")
+script = ExtResource("1_wk176")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 8
@@ -32,8 +32,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Game Over!"
+text = "Main Menu"
+
+[node name="ResumeButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
 
 [node name="RestartButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
@@ -45,3 +51,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Quit
 "
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

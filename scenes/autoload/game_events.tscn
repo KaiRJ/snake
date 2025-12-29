@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfo7ri1foksc2"]
-
-[ext_resource type="Script" uid="uid://rxw65hgqcbsv" path="res://scenes/autoload/game_events.gd" id="1_4uhj7"]
-[ext_resource type="PackedScene" uid="uid://3fylcjfjep4d" path="res://scenes/ui/game_over_screen/game_over_screen.tscn" id="2_6gn8h"]
-
-[node name="GameEvents" type="Node"]
-script = ExtResource("1_4uhj7")
-game_over_screen_scene = ExtResource("2_6gn8h")

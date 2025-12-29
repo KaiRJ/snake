@@ -6,14 +6,14 @@ extends Node2D
 ## the game. 
 ##
 
+## The tile map the snake is moving in
+@export var tile_map: TileMapLayer
+
+## Initial snake size
+@export var init_size: int
+
 ## The snake body scene
 @export var snake_body: PackedScene
-
-## The TileMapLayer the snake is moving in
-@export var tile_map_layer: TileMapLayer
-
-## The starting size of the snake
-@export var init_size := 3
 
 ## Dictionary for the directions for player input
 const DIRECTIONS = {"ui_up"   : Vector2i.UP,
@@ -28,7 +28,7 @@ var snake_body_parts: Array[SnakeBody]
 var move_tail := true
 
 ## Size of the tiles used in TILE_MAP
-var _tile_size: Vector2i
+var _step_size: Vector2i
 
 ## The current rotation of the snake in radians
 var _current_rotation := 0.0
@@ -36,43 +36,15 @@ var _current_rotation := 0.0
 ## The current direction of the snake
 var _current_direction := Vector2i.RIGHT
 
-## New direction set by player
+## New direction set by player (gets checked at timer end)
 var _new_direction: Vector2i
 
 
 func _ready() -> void:
-	# Connect timer signal
-	$MovementTimer.timeout.connect(_on_movement_timer_timeout)
+	GameEvents.start_game.connect(_on_start_game_signal)
+	GameEvents.game_over.connect(_on_game_over_signal)
 
-	if !tile_map_layer:
-		# TODO should error out
-		return
 	
-	# Get tile width (assuming squares)
-	_tile_size = tile_map_layer.tile_set.tile_size
-	
-	# Get dimensions of tile map layer
-	var tm_rect := tile_map_layer.get_used_rect()
-	var tm_origin := tm_rect.position
-	var tm_size := tm_rect.size
-	
-	# Set the initial position to center (plus offset of sprite)
-	# TODO bound to be a better way of doing this (and combine it with the item_manager)
-	# maybe a global?
-	var center = _tile_size * (tm_size/2)
-	var offset = _tile_size/2
-	global_position = tm_origin + center + offset
-
-	# Need an initial new direction
-	_new_direction = _current_direction
-
-	# Instantiate a new snake body part and make it a head
-	for i in range(init_size):
-		var new_head := snake_body.instantiate() as SnakeBody
-		$Body.add_child(new_head)
-		move_part_to_front(new_head)
-
-
 func _physics_process(_delta: float) -> void:
 	get_input()
 
@@ -82,7 +54,7 @@ func get_input() -> void:
 	for input in DIRECTIONS:
 		if Input.is_action_just_pressed(input):
 			_new_direction = DIRECTIONS[input]
-	
+
 
 ## Update _current_direction and _current_rotation based on _new_direction
 func update_rotation_and_direciton() -> void:
@@ -113,7 +85,7 @@ func move_part_to_front(new_head: SnakeBody) -> void:
 	# initialise new head infront of the hold one
 	new_head.make_head()
 	new_head.rotation = _current_rotation # Same rotation as the head
-	new_head.global_position = origin + (_current_direction * _tile_size)
+	new_head.global_position = origin + (_current_direction * _step_size)
 	snake_body_parts.push_front(new_head)
 	
 
@@ -131,3 +103,33 @@ func _on_movement_timer_timeout() -> void:
 	
 	move_part_to_front(new_head)
 	move_tail = true
+
+
+func _on_start_game_signal():
+	print("statring gmae")
+	# Get dimensions of tile map layer
+	var tm_tile_size = tile_map.tile_set.tile_size
+	var tm_rect = tile_map.get_used_rect()
+	var tm_origin = tm_rect.position
+	var tm_size = tm_rect.size
+	var center = tm_origin + (tm_tile_size * (tm_size/2)) + tm_tile_size/2
+	
+	# Set new default values
+	_step_size = tm_tile_size
+	global_position = center
+	_new_direction = Vector2i.RIGHT
+	_current_direction = Vector2i.RIGHT
+	
+	# Instantiate a new snake body part and make it a head
+	for i in range(init_size):
+		var new_head := snake_body.instantiate() as SnakeBody
+		$Body.add_child(new_head)
+		move_part_to_front(new_head)
+		
+	# Start timer with new speed
+	$MovementTimer.start(0.5)
+
+
+func _on_game_over_signal():
+	pass
+	#snake_body_parts.clear()

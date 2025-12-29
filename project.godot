@@ -17,7 +17,7 @@ config/icon="res://scenes/snake_manager/icon.svg"
 
 [autoload]
 
-GameEvents="*res://scenes/autoload/game_events.tscn"
+GameEvents="*res://autoloads/GameEvents.gd"
 
 [display]
 

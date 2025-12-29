@@ -20,5 +20,5 @@ var score: int = 0
 
 
 ## This is the template function for an item to call when it is picked up.
-func apply_item(snake_manager: SnakeManager) -> void:
+func apply_item(_snake_manager: SnakeManager) -> void:
 	push_error("apply_item() not implemented for item: %s" % item_name)

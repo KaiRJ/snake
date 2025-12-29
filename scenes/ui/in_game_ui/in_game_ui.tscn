@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv6cjio1alre7"]
+[gd_scene load_steps=3 format=3 uid="uid://bv6cjio1alre7"]
 
 [ext_resource type="Script" uid="uid://ceak41mddtetv" path="res://scenes/ui/in_game_ui/in_game_ui.gd" id="1_nopjh"]
+[ext_resource type="PackedScene" uid="uid://3fylcjfjep4d" path="res://scenes/ui/in_game_menu/in_game_menu.tscn" id="2_rakhe"]
 
 [node name="InGameUI" type="CanvasLayer"]
 script = ExtResource("1_nopjh")
+in_game_menu = ExtResource("2_rakhe")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -40,6 +42,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="MenuButton" type="Button" parent="MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 size_flags_vertical = 0
@@ -65,3 +68,5 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 12
 text = "0"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
