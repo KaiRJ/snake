@@ -5,8 +5,8 @@ extends CanvasLayer
 ## TODO
 ##
 
-## Reference to the item manager scene to get the score in the game.
-@export var in_game_menu: PackedScene
+## Reference to the in game menu scene.
+@export var in_game_menu_scene: PackedScene
 
 ## Reference to the item manager scene to get the score in the game.
 @export var item_manager: ItemManager
@@ -37,9 +37,11 @@ func _process(_delta: float) -> void:
 
 
 func _on_menu_button_pressed() -> void:
-	var in_game_menu_instance = in_game_menu.instantiate() as InGameMenu
-	in_game_menu_instance.make_in_game_menu()
-	add_child(in_game_menu_instance)
+	visible = false
+	var in_game_menu = in_game_menu_scene.instantiate() as InGameMenu
+	in_game_menu.make_in_game_menu()
+	in_game_menu.resume.connect(_on_in_game_menu_resume)
+	add_child(in_game_menu)
 	
 
 func _on_start_game_signal() -> void:
@@ -47,9 +49,11 @@ func _on_start_game_signal() -> void:
 	
 
 func _on_game_over_signal() -> void:
-	print("Game over")
-	var in_game_menu_instance = in_game_menu.instantiate() as InGameMenu
-	in_game_menu_instance.make_game_over_menu()
-	add_child(in_game_menu_instance)
 	visible = false
-	
+	var in_game_menu = in_game_menu_scene.instantiate() as InGameMenu
+	in_game_menu.make_game_over_menu()
+	add_child(in_game_menu)
+
+
+func _on_in_game_menu_resume() -> void:
+	visible = true

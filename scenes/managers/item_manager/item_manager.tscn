@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://bw4kbwucl4nci"]
 
-[ext_resource type="Script" uid="uid://c17g2krv38nqy" path="res://scenes/item_manager/item_manager.gd" id="1_52qs8"]
+[ext_resource type="Script" uid="uid://c17g2krv38nqy" path="res://scenes/managers/item_manager/item_manager.gd" id="1_52qs8"]
 [ext_resource type="PackedScene" uid="uid://dp4lgygdp1f51" path="res://scenes/items/item/item.tscn" id="2_5i0rd"]
 
-[node name="ItemManager" type="Node"]
+[node name="ItemManager" type="Node" groups=["persist"]]
 script = ExtResource("1_52qs8")
-item = ExtResource("2_5i0rd")
+item_scene = ExtResource("2_5i0rd")
 min_spawn_time = 10
 max_spawn_time = 20
 

@@ -12,7 +12,7 @@ extends Node
 @export var tile_map_layer: TileMapLayer
 
 ## The base item type
-@export var item: PackedScene
+@export var item_scene: PackedScene
 
 ## Resources for the different types of item
 @export var item_types: Array[ItemResource]
@@ -67,16 +67,32 @@ func get_free_coordinates() -> Array[Vector2i]:
 
 
 ## Spawn a random item in a specific location
-func spawn_item(spawn_coords: Vector2i) -> void:
-	var new_item = item.instantiate() as Item
+func spawn_item(spawn_coords: Vector2i, item_type: ItemResource) -> void:
+	var new_item = item_scene.instantiate() as Item
 	new_item.global_position = spawn_coords
-	new_item.item_type = item_types.pick_random()
+	new_item.item_type = item_type
 	new_item.picked_up.connect(_on_item_picked_up)
 	add_child(new_item)
+	
+
+## Save all the data of the item_manager to the saved_game resource
+func on_save_game(saved_game: SavedGame) -> SavedGame:
+	saved_game.game_score = total_score
+	return saved_game
+	
+	
+## Load all the data from the saved_game resource
+func on_load_game(saved_game: SavedGame) -> void:
+	total_score = saved_game.game_score
+	
+	for item in saved_game.saved_items:
+		spawn_item(item.position, item.item_type)
 
 
 func _on_spawn_timer_timeout() -> void:
-	spawn_item(get_free_coordinates().pick_random())
+	var random_coords = get_free_coordinates().pick_random()
+	var item_type = item_types.pick_random()
+	spawn_item(random_coords, item_type)
 	$SpawnTimer.start(randf_range(min_spawn_time, max_spawn_time))
 	
 

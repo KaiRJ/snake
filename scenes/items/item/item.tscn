@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://dp4lgygdp1f51"]
 
 [ext_resource type="Script" uid="uid://dcyrku5i7phv6" path="res://scenes/items/item/item.gd" id="1_k5fmm"]
-[ext_resource type="Texture2D" uid="uid://bhc52hwe02yvd" path="res://scenes/snake_manager/icon.svg" id="2_6apef"]
+[ext_resource type="Texture2D" uid="uid://bhc52hwe02yvd" path="res://scenes/managers/snake_manager/icon.svg" id="2_6apef"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ouqkq"]
 size = Vector2(14, 14)
 
-[node name="Item" type="Node2D" groups=["item"]]
+[node name="Item" type="Node2D" groups=["item", "persist"]]
 script = ExtResource("1_k5fmm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

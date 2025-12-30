@@ -13,7 +13,7 @@ config_version=5
 config/name="Snake"
 run/main_scene="uid://dk6ca2tumgk3g"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://scenes/snake_manager/icon.svg"
+config/icon="res://scenes/managers/snake_manager/icon.svg"
 
 [autoload]
 
@@ -26,6 +26,10 @@ window/size/viewport_height=320
 window/size/window_width_override=1080
 window/size/window_height_override=720
 window/stretch/mode="viewport"
+
+[global_group]
+
+persist="Marks scene as to be saved"
 
 [layer_names]
 

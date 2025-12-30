@@ -10,10 +10,10 @@ extends Node2D
 @export var tile_map: TileMapLayer
 
 ## Initial snake size
-@export var init_size: int
+@export var init_size: int = 3
 
 ## The snake body scene
-@export var snake_body: PackedScene
+@export var snake_body_scene: PackedScene
 
 ## Dictionary for the directions for player input
 const DIRECTIONS = {"ui_up"   : Vector2i.UP,
@@ -43,8 +43,12 @@ var _new_direction: Vector2i
 func _ready() -> void:
 	GameEvents.start_game.connect(_on_start_game_signal)
 	GameEvents.game_over.connect(_on_game_over_signal)
-
 	
+	# Get dimensions of tile map layer
+	var tm_tile_size = tile_map.tile_set.tile_size
+	_step_size = tm_tile_size
+
+
 func _physics_process(_delta: float) -> void:
 	get_input()
 
@@ -79,15 +83,67 @@ func move_part_to_front(new_head: SnakeBody) -> void:
 	var origin: Vector2i = global_position
 	if len(snake_body_parts) > 0:
 		var current_head = snake_body_parts.front() as SnakeBody
-		current_head.make_body()
+		current_head.make(SnakeBody.Type.BODY)
 		origin = current_head.global_position 
 		
 	# initialise new head infront of the hold one
-	new_head.make_head()
+	new_head.make(SnakeBody.Type.HEAD)
 	new_head.rotation = _current_rotation # Same rotation as the head
 	new_head.global_position = origin + (_current_direction * _step_size)
 	snake_body_parts.push_front(new_head)
 	
+func setup_new_game() -> void:
+	# set position at center
+	var tm_rect = tile_map.get_used_rect()
+	var tm_origin = tm_rect.position
+	var tm_size = tm_rect.size
+	var center = tm_origin + (_step_size * (tm_size/2)) + _step_size/2
+	global_position = center
+	
+	# defaults
+	_new_direction = Vector2i.RIGHT
+	_current_direction = Vector2i.RIGHT
+	
+	# instantiate a new snake body part and make it a head
+	for i in range(init_size):
+		var new_head := snake_body_scene.instantiate() as SnakeBody
+		$Body.add_child(new_head)
+		move_part_to_front(new_head)
+
+
+func on_save_game(saved_game: SavedGame) -> SavedGame:
+	var saved_snake := SavedSnake.new()
+	saved_snake.position = global_position
+	saved_snake.move_tail = move_tail
+	saved_snake.current_rotation = _current_rotation
+	saved_snake.current_direction = _current_direction
+	saved_snake.new_direction = _new_direction
+
+	for body in snake_body_parts:
+		var saved_body := SavedBody.new()
+		saved_body.position = body.position
+		saved_body.type = body.type
+		saved_snake.body_parts.append(saved_body)
+	
+	saved_game.saved_snake = saved_snake
+	return saved_game
+
+
+func on_load_game(saved_game: SavedGame):
+	global_position = saved_game.saved_snake.position
+	move_tail = saved_game.saved_snake.move_tail
+	_current_rotation = saved_game.saved_snake.current_rotation
+	_current_direction = saved_game.saved_snake.current_direction
+	_new_direction = saved_game.saved_snake.new_direction
+
+	snake_body_parts.clear()
+	for body in saved_game.saved_snake.body_parts:
+		var new_body = snake_body_scene.instantiate() as SnakeBody
+		new_body.global_position = body.position
+		new_body.make(body.type)
+		snake_body_parts.append(new_body)
+		$Body.add_child(new_body)
+
 
 ## Update the players position on timer timeout
 func _on_movement_timer_timeout() -> void:
@@ -96,40 +152,24 @@ func _on_movement_timer_timeout() -> void:
 	var new_head: SnakeBody
 	if move_tail: # make the current tail the head
 		new_head = snake_body_parts.pop_back()
-		snake_body_parts.back().make_tail() # replace the tail
+		snake_body_parts.back().make(SnakeBody.Type.TAIL) # replace the tail
 	else: # instantiate a new head
-		new_head = snake_body.instantiate()
+		new_head = snake_body_scene.instantiate()
 		$Body.add_child(new_head)
 	
 	move_part_to_front(new_head)
 	move_tail = true
 
 
-func _on_start_game_signal():
-	print("statring gmae")
-	# Get dimensions of tile map layer
-	var tm_tile_size = tile_map.tile_set.tile_size
-	var tm_rect = tile_map.get_used_rect()
-	var tm_origin = tm_rect.position
-	var tm_size = tm_rect.size
-	var center = tm_origin + (tm_tile_size * (tm_size/2)) + tm_tile_size/2
+func _on_start_game_signal() -> void:
+	if snake_body_parts.is_empty():
+		setup_new_game()
 	
-	# Set new default values
-	_step_size = tm_tile_size
-	global_position = center
-	_new_direction = Vector2i.RIGHT
-	_current_direction = Vector2i.RIGHT
-	
-	# Instantiate a new snake body part and make it a head
-	for i in range(init_size):
-		var new_head := snake_body.instantiate() as SnakeBody
-		$Body.add_child(new_head)
-		move_part_to_front(new_head)
-		
+	# TODO Set these from a difficulty resource
 	# Start timer with new speed
 	$MovementTimer.start(0.5)
 
 
 func _on_game_over_signal():
+	# TODO play death animation
 	pass
-	#snake_body_parts.clear()

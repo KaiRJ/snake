@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://ckuxxn8xk07ap"]
 
-[ext_resource type="Script" uid="uid://crhs6chsfqnif" path="res://scenes/snake_manager/snake_manager.gd" id="1_20sc0"]
+[ext_resource type="Script" uid="uid://crhs6chsfqnif" path="res://scenes/managers/snake_manager/snake_manager.gd" id="1_20sc0"]
 [ext_resource type="PackedScene" uid="uid://bqoool8slo4fd" path="res://scenes/snake_body/snake_body.tscn" id="2_t4wjm"]
 
-[node name="SnakeManager" type="Node2D"]
+[node name="SnakeManager" type="Node2D" groups=["persist"]]
 script = ExtResource("1_20sc0")
-snake_body = ExtResource("2_t4wjm")
+snake_body_scene = ExtResource("2_t4wjm")
 
 [node name="MovementTimer" type="Timer" parent="."]
 
