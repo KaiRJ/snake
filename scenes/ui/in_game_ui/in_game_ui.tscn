@@ -20,34 +20,22 @@ theme_override_constants/margin_bottom = 8
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 
 [node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
+theme_override_constants/shadow_offset_x = 2
 text = "Score: "
 
 [node name="Score" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
 text = "0"
-
-[node name="Gap" type="Control" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-
-[node name="MenuButton" type="Button" parent="MarginContainer/HBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(75, 0)
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
-text = "Menu"
 
 [node name="Gap2" type="Control" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -58,15 +46,22 @@ size_flags_vertical = 0
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
 text = "Snake size:"
 
 [node name="SnakeSize" type="Label" parent="MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 12
 text = "0"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[node name="MenuButton" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Menu"
+
+[connection signal="pressed" from="MarginContainer/MenuButton" to="." method="_on_menu_button_pressed"]

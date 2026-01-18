@@ -1,5 +1,5 @@
 class_name MainMenu
-extends CanvasLayer
+extends CenterContainer
 
 
 func _ready() -> void:

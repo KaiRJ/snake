@@ -1,5 +1,5 @@
 class_name InGameMenu
-extends CanvasLayer
+extends CenterContainer
 ## The in game menu scene for prompting the player to resume, restart, and quit.
 ##
 ## This scene pauses the game and shows the player the in game menu, which
@@ -9,10 +9,6 @@ extends CanvasLayer
 
 ## Signal that the game should be resumed
 signal resume
-
-
-func _ready() -> void:
-	get_tree().paused = true;
 
 
 ## Set the resume button to be visable and the label for the in game menu.
@@ -25,12 +21,12 @@ func make_in_game_menu() -> void:
 func make_game_over_menu() -> void:
 	$%Label.text = "Game over!"
 	$%ResumeButton.visible = false
+	$%LoadButton.visible = false
 	$%SaveButton.visible = false
 
 
 func _on_resume_button_pressed() -> void:
 	resume.emit()
-	get_tree().paused = false;
 	queue_free()
 
 

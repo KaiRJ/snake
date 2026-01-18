@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://braufvaluony6"]
+
+[ext_resource type="StyleBox" uid="uid://dtk16eodvqdcy" path="res://resources/theme/hover_button.tres" id="1_51kgw"]
+[ext_resource type="Texture2D" uid="uid://cwyc4ar7dema1" path="res://assets/ui/container_sprite.png" id="1_k5ytv"]
+[ext_resource type="StyleBox" uid="uid://b2raqa3xaf785" path="res://resources/theme/normal_button.tres" id="1_ltdrk"]
+[ext_resource type="FontFile" uid="uid://valslll0o3c7" path="res://resources/theme/Rockboxcond12.ttf" id="2_ltdrk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_51kgw"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nva1m"]
+texture = ExtResource("1_k5ytv")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[resource]
+default_font = ExtResource("2_ltdrk")
+default_font_size = 16
+Button/colors/font_outline_color = Color(0.24705882, 0.14901961, 0.19215687, 1)
+Button/constants/outline_size = 7
+Button/font_sizes/font_size = 16
+Button/styles/focus = SubResource("StyleBoxEmpty_51kgw")
+Button/styles/hover = ExtResource("1_51kgw")
+Button/styles/normal = ExtResource("1_ltdrk")
+Label/colors/font_outline_color = Color(0.24705882, 0.14901961, 0.19215687, 1)
+Label/colors/font_shadow_color = Color(0.24705882, 0.14901961, 0.19215687, 1)
+Label/constants/outline_size = 7
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_nva1m")

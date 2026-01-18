@@ -42,7 +42,6 @@ var _new_direction: Vector2i
 
 func _ready() -> void:
 	GameEvents.start_game.connect(_on_start_game_signal)
-	GameEvents.game_over.connect(_on_game_over_signal)
 	
 	# Get dimensions of tile map layer
 	var tm_tile_size = tile_map.tile_set.tile_size
@@ -91,7 +90,9 @@ func move_part_to_front(new_head: SnakeBody) -> void:
 	new_head.rotation = _current_rotation # Same rotation as the head
 	new_head.global_position = origin + (_current_direction * _step_size)
 	snake_body_parts.push_front(new_head)
-	
+
+
+## Set up the SnakeManager for a new game
 func setup_new_game() -> void:
 	# set position at center
 	var tm_rect = tile_map.get_used_rect()
@@ -168,8 +169,3 @@ func _on_start_game_signal() -> void:
 	# TODO Set these from a difficulty resource
 	# Start timer with new speed
 	$MovementTimer.start(0.5)
-
-
-func _on_game_over_signal():
-	# TODO play death animation
-	pass
