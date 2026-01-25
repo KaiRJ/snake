@@ -6,17 +6,29 @@ extends Node2D
 ## and calls the game over function if the head collides with another body.
 ##
 
-# TODO might not need this when can just check the sprites directly
 enum Type {HEAD, BODY, TAIL}
 var type: Type = Type.HEAD
 
+var head_texture = preload("res://assets/gilla/head.png")
+var body_texture = preload("res://assets/gilla/body.png")
+var tail_texture = preload("res://assets/gilla/tail.png")
+
+
 func _ready() -> void:
 	$Area2D.area_entered.connect(_on_area_entered)
+	$Body.texture = body_texture
 
 
 ## Turn body part into a specific part
 func make(t: Type) -> void:
 	type = t
+	match type:
+		Type.HEAD:
+			$Body.texture = head_texture
+		Type.BODY:
+			$Body.texture = body_texture
+		Type.TAIL:
+			$Body.texture = tail_texture
 
 
 ## Delete the snake bodies on load game
