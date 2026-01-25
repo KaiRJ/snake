@@ -18,10 +18,10 @@ extends Node
 @export var item_types: Array[ItemResource]
 
 ## The minimum sqawn time for an item
-@export var min_spawn_time := 5
+@export var min_spawn_time: float = 5.0
 
 ## The maximum sqawn time for an item
-@export var max_spawn_time := 10
+@export var max_spawn_time: float = 10.0
 
 ## Variable to hold the total score from all the items picked up
 var total_score: int = 0

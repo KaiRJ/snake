@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dk6ca2tumgk3g"]
+[gd_scene load_steps=11 format=4 uid="uid://dk6ca2tumgk3g"]
 
 [ext_resource type="PackedScene" uid="uid://bv6cjio1alre7" path="res://scenes/ui/in_game_ui/in_game_ui.tscn" id="1_hujxm"]
 [ext_resource type="TileSet" uid="uid://byqmihc3uylv6" path="res://resources/tileset.tres" id="1_iuonh"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ckuxxn8xk07ap" path="res://scenes/managers/snake_manager/snake_manager.tscn" id="3_k2fmo"]
 [ext_resource type="Script" uid="uid://d3bi5mgkgcc44" path="res://scenes/items/item_resource/item_resource.gd" id="4_hujxm"]
 [ext_resource type="Resource" uid="uid://cyohq73so5pn5" path="res://scenes/items/item_resource/growth_item/growth_resource.tres" id="5_yyfjg"]
+[ext_resource type="PackedScene" uid="uid://c645o5nqqq35b" path="res://scenes/managers/movement_manager/movement_manager.tscn" id="6_a8run"]
 [ext_resource type="PackedScene" uid="uid://1tcei4qfycpd" path="res://scenes/managers/save_manager/save_manager.tscn" id="9_b1x3f"]
 
 [node name="Main" type="Node"]
@@ -27,10 +28,13 @@ tile_set = ExtResource("1_iuonh")
 tile_map = NodePath("../TileMapLayer")
 init_size = 5
 
+[node name="MovementManager" parent="." node_paths=PackedStringArray("snake_manager") instance=ExtResource("6_a8run")]
+snake_manager = NodePath("../SnakeManager")
+
 [node name="ItemManager" parent="." node_paths=PackedStringArray("tile_map_layer") instance=ExtResource("2_k2fmo")]
 tile_map_layer = NodePath("../TileMapLayer")
 item_types = Array[ExtResource("4_hujxm")]([ExtResource("5_yyfjg")])
-min_spawn_time = 1
-max_spawn_time = 5
+min_spawn_time = 5.0
+max_spawn_time = 10.0
 
 [node name="SaveManager" parent="." instance=ExtResource("9_b1x3f")]

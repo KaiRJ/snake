@@ -7,8 +7,4 @@
 script = ExtResource("1_20sc0")
 snake_body_scene = ExtResource("2_t4wjm")
 
-[node name="MovementTimer" type="Timer" parent="."]
-
 [node name="Body" type="Node" parent="."]
-
-[connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]
