@@ -24,7 +24,7 @@ var direction: Vector2i
 
 func _ready() -> void:
 	GameEvents.start_game.connect(_on_start_game_signal)
-	move.connect(snake_manager.move)
+	move.connect(snake_manager.move_snake)
 
 
 func _physics_process(_delta: float) -> void:

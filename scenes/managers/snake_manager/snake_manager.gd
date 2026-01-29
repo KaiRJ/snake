@@ -15,12 +15,13 @@ extends Node2D
 ## The snake body scene
 @export var snake_body_scene: PackedScene
 
+@onready var _body: Node = $Body
 
 ## Array to hold and track all the snake body parts
 var snake_body_parts: Array[SnakeBody]
 
-## Move the tail to the front or create a new head
-var move_tail: bool = true
+## Flag for if snake should grow on next move
+var grow: bool = false
 
 ## Size of the tiles used in TILE_MAP
 var _step_size: Vector2i
@@ -42,21 +43,12 @@ func _ready() -> void:
 
 
 ## Update the players position on timer timeout
-func move(direction: Vector2i) -> void:
+func move_snake(direction: Vector2i) -> void:
 	update_direction_and_rotation(direction)
-	
-	var new_head: SnakeBody
-	if move_tail: # make the current tail the head (and replace tail)
-		new_head = snake_body_parts.pop_back()
-		var new_tail: SnakeBody = snake_body_parts.back()
-		new_tail.make(SnakeBody.Type.TAIL)
-	else: # instantiate a new head
-		new_head = snake_body_scene.instantiate()
-		$Body.add_child(new_head)
-	
-	move_part_to_front(new_head)
-	move_tail = true
-	
+	move_tail()
+	move_head()
+	fix_tail_and_neck_rotation()
+
 
 ## Update _direction and _rotation from a new direction
 func update_direction_and_rotation(new_direction: Vector2i) -> void:
@@ -73,28 +65,59 @@ func update_direction_and_rotation(new_direction: Vector2i) -> void:
 	_direction = new_direction
 
 
-## Move an instance of a SnakeBody to the front of the snake
-func move_part_to_front(new_head: SnakeBody) -> void:
+## Either detele the tail or leave it as be (not really moving it)
+func move_tail() -> void:
+	if grow:
+		grow = false
+		return
+	
+	var old_tail: SnakeBody = snake_body_parts.pop_back()
+	old_tail.queue_free()
+	
+	var new_tail: SnakeBody = snake_body_parts.back()
+	new_tail.make(SnakeBody.Type.TAIL)
+	new_tail.flip_v(false)
+	new_tail.flip_h(false)
+
+
+## Move the snake by one unit
+func move_head() -> void:
+	var new_head: SnakeBody = snake_body_scene.instantiate()
+	
 	# If there is no head currently then use the position of the SnakeManager
 	var origin: Vector2i = global_position
 	if len(snake_body_parts) > 0:
 		var current_head: SnakeBody = snake_body_parts.front()
 		current_head.make(SnakeBody.Type.BODY)
-		origin = current_head.global_position 
+		origin = current_head.global_position
+		
+	_body.add_child(new_head)
 		
 	# initialise new head infront of the hold one
 	new_head.make(SnakeBody.Type.HEAD)
 	new_head.rotation = _rotation # Same rotation as the head
 	new_head.global_position = origin + (_direction * _step_size)
 	snake_body_parts.push_front(new_head)
-	
-	
+
+
+## Check if tail and head are not aligned with the body
+func fix_tail_and_neck_rotation() -> void:
+	var head: SnakeBody = snake_body_parts.front()
+	var neck: SnakeBody = snake_body_parts[1]
+	if (head.rotation > neck.rotation):
+		neck.make(SnakeBody.Type.CURVE_DOWN)
+		neck.rotation = head.rotation
+	elif (head.rotation < neck.rotation):
+		neck.make(SnakeBody.Type.CURVE_UP)
+		neck.rotation = head.rotation
+
+
 func _on_start_game_signal() -> void:
 	# set position to centre of tilemap
 	var tm_rect: Rect2i = tile_map.get_used_rect()
 	var tm_origin: Vector2i = tm_rect.position
 	var tm_size: Vector2i= tm_rect.size
-	var center: Vector2i = tm_origin + (_step_size * (tm_size/2)) + _step_size/2
+	var center: Vector2i = (tm_origin + (_step_size * (tm_size/2)) + _step_size/2)
 	global_position = center
 	
 	# defaults
@@ -102,9 +125,7 @@ func _on_start_game_signal() -> void:
 	
 	# instantiate the snake body parts
 	for i: int in range(init_size):
-		var new_head: SnakeBody = snake_body_scene.instantiate()
-		$Body.add_child(new_head)
-		move_part_to_front(new_head)
+		move_head()
 		
 	# make the last part a tail
 	var tail: SnakeBody = snake_body_parts.back()
@@ -114,7 +135,7 @@ func _on_start_game_signal() -> void:
 func on_save_game(saved_game: SavedGame) -> SavedGame:
 	var saved_snake: SavedSnake = SavedSnake.new()
 	saved_snake.position = global_position
-	saved_snake.move_tail = move_tail
+	saved_snake.grow = grow
 	saved_snake.rotation = _rotation
 	saved_snake.direction = _direction
 
@@ -130,14 +151,14 @@ func on_save_game(saved_game: SavedGame) -> SavedGame:
 
 func on_load_game(saved_game: SavedGame) -> void:
 	global_position = saved_game.saved_snake.position
-	move_tail = saved_game.saved_snake.move_tail
+	grow = saved_game.saved_snake.grow
 	_rotation = saved_game.saved_snake.rotation
 	_direction = saved_game.saved_snake.direction
 
 	snake_body_parts.clear()
-	for body: SavedBody in saved_game.saved_snake.body_parts:
+	for saved_body: SavedBody in saved_game.saved_snake.body_parts:
 		var new_body: SnakeBody = snake_body_scene.instantiate()
-		new_body.global_position = body.position
-		new_body.make(body.type)
+		new_body.global_position = saved_body.position
+		new_body.make(saved_body.type)
 		snake_body_parts.append(new_body)
-		$Body.add_child(new_body)
+		_body.add_child(new_body)

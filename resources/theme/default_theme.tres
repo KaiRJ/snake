@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://braufvaluony6"]
+[gd_resource type="Theme" format=3 uid="uid://braufvaluony6"]
 
 [ext_resource type="StyleBox" uid="uid://dtk16eodvqdcy" path="res://resources/theme/hover_button.tres" id="1_51kgw"]
 [ext_resource type="Texture2D" uid="uid://cwyc4ar7dema1" path="res://assets/ui/container_sprite.png" id="1_k5ytv"]

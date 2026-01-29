@@ -9,7 +9,7 @@ func _ready() -> void:
 
 func _on_save_game() -> void:
 	var saved_game: SavedGame = SavedGame.new()
-	for thing in get_tree().get_nodes_in_group("persist"):
+	for thing: Node in get_tree().get_nodes_in_group("persist"):
 		if thing.has_method("on_save_game"):
 			saved_game = thing.on_save_game(saved_game)
 			
@@ -18,7 +18,7 @@ func _on_save_game() -> void:
 
 func _on_load_game() -> void:	
 	var saved_game: SavedGame = load(GameEvents.SAVE_FILE)
-	for thing in get_tree().get_nodes_in_group("persist"):
+	for thing: Node in get_tree().get_nodes_in_group("persist"):
 		if thing.has_method("on_load_game"):
 			thing.on_load_game(saved_game)
 	

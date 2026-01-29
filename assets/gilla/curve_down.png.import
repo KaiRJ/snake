@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4h2d4l3qbwy"
-path="res://.godot/imported/tail.png-e580a9d8723638f07fb501c35d0f018d.ctex"
+uid="uid://w4p6kpedql50"
+path="res://.godot/imported/curve_down.png-2e351e0110829ac7bb99efcbd3d2dfa2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gilla/tail.png"
-dest_files=["res://.godot/imported/tail.png-e580a9d8723638f07fb501c35d0f018d.ctex"]
+source_file="res://assets/gilla/curve_down.png"
+dest_files=["res://.godot/imported/curve_down.png-2e351e0110829ac7bb99efcbd3d2dfa2.ctex"]
 
 [params]
 

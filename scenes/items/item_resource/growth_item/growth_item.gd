@@ -8,4 +8,4 @@ extends ItemResource
 
 ## Signal the snake manager to not move it's tail on the next move. 
 func apply_item(snake_manager: SnakeManager) -> void:
-	snake_manager.move_tail = false
+	snake_manager.grow = true

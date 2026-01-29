@@ -1,10 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c645o5nqqq35b"]
+[gd_scene format=3 uid="uid://c645o5nqqq35b"]
 
 [ext_resource type="Script" uid="uid://x5yshfp4c1of" path="res://scenes/managers/movement_manager/movement_manager.gd" id="1_fykla"]
 
-[node name="MovementManager" type="Node"]
+[node name="MovementManager" type="Node" unique_id=1466245822]
 script = ExtResource("1_fykla")
 
-[node name="MovementTimer" type="Timer" parent="."]
+[node name="MovementTimer" type="Timer" parent="." unique_id=1595326583]
 
 [connection signal="timeout" from="MovementTimer" to="." method="_on_movement_timer_timeout"]

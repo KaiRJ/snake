@@ -1,19 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqoool8slo4fd"]
+[gd_scene format=3 uid="uid://bqoool8slo4fd"]
 
 [ext_resource type="Script" uid="uid://dsb8hxldl84xl" path="res://scenes/snake_body/snake_body.gd" id="1_lybl8"]
-[ext_resource type="Texture2D" uid="uid://buurvw1wv8jle" path="res://assets/gilla/body.png" id="2_lybl8"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2arxw"]
+load_path = "res://.godot/imported/body.png-8387043facbcce2734a65fef0787a243.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lybl8"]
 size = Vector2(8, 8)
 
-[node name="SnakeBody" type="Node2D" groups=["persist", "snake"]]
+[node name="SnakeBody" type="Node2D" unique_id=1854197614 groups=["persist", "snake"]]
 script = ExtResource("1_lybl8")
 
-[node name="Body" type="Sprite2D" parent="."]
-texture = ExtResource("2_lybl8")
-offset = Vector2(0, -1)
+[node name="Body" type="Sprite2D" parent="." unique_id=2074702199]
+texture = SubResource("CompressedTexture2D_2arxw")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=950385175]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=78193974]
 shape = SubResource("RectangleShape2D_lybl8")
