@@ -50,16 +50,6 @@ func make(t: Type) -> void:
 			body.texture = curve_down_texture
 
 
-## Flip sprite in horizontal direction
-func flip_h(flip: bool) -> void:
-	body.flip_h = flip
-
-
-## Flip sprite in vertical direction
-func flip_v(flip: bool) -> void:
-	body.flip_v = flip
-
-
 ## If the head collides with an other snake body call the game over function
 func _on_area_entered(incoming: Area2D) -> void:
 	# Check if head to make sure game over is only called once

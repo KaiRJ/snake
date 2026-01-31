@@ -92,8 +92,6 @@ func move_tail() -> void:
 	
 	var new_tail: SnakeBody = snake_body_parts.back()
 	new_tail.make(SnakeBody.Type.TAIL)
-	new_tail.flip_v(false)
-	new_tail.flip_h(false)
 
 
 ## Move the snake by one unit
