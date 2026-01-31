@@ -6,6 +6,10 @@ extends CenterContainer
 ## they can interact with.
 ##
 
+@onready var title_label: Label = $%Title
+@onready var resume_button: Button = $%ResumeButton
+@onready var save_button: Button = $%SaveButton
+@onready var load_button: Button = $%LoadButton
 
 ## Signal that the game should be resumed
 signal resume
@@ -13,16 +17,15 @@ signal resume
 
 ## Set the resume button to be visable and the label for the in game menu.
 func make_in_game_menu() -> void:
-	$%Label.text = "Main Menu"
-	$%ResumeButton.visible = true
-	
+	title_label.text = "Main Menu"
+
 
 ## Set the resume button to be invisable and the label for the game over menu.
 func make_game_over_menu() -> void:
-	$%Label.text = "Game over!"
-	$%ResumeButton.visible = false
-	$%LoadButton.visible = false
-	$%SaveButton.visible = false
+	title_label.text = "Game over!"
+	resume_button.visible = false
+	save_button.visible = false
+	load_button.visible = false
 
 
 func _on_resume_button_pressed() -> void:

@@ -23,8 +23,10 @@ var direction: Vector2i
 
 
 func _ready() -> void:
-	GameEvents.start_game.connect(_on_start_game_signal)
 	move.connect(snake_manager.move_snake)
+	
+	direction = Vector2i.RIGHT
+	timer.start(timer_wait_time)
 
 
 func _physics_process(_delta: float) -> void:
@@ -36,11 +38,6 @@ func get_input() -> void:
 	for input: String in DIRECTIONS:
 		if Input.is_action_just_pressed(input):
 			direction = DIRECTIONS[input]
-
-
-func _on_start_game_signal() -> void:
-	direction = Vector2i.RIGHT
-	timer.start(timer_wait_time)
 
 
 func _on_movement_timer_timeout() -> void:

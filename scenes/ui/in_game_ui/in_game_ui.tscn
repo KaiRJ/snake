@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bv6cjio1alre7"]
+[gd_scene format=3 uid="uid://bv6cjio1alre7"]
 
 [ext_resource type="Script" uid="uid://ceak41mddtetv" path="res://scenes/ui/in_game_ui/in_game_ui.gd" id="1_nopjh"]
 [ext_resource type="PackedScene" uid="uid://3fylcjfjep4d" path="res://scenes/ui/in_game_menu/in_game_menu.tscn" id="2_rakhe"]
 
-[node name="InGameUI" type="CanvasLayer"]
+[node name="InGameUI" type="CanvasLayer" unique_id=728459449]
 script = ExtResource("1_nopjh")
 in_game_menu_scene = ExtResource("2_rakhe")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2002787477]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,18 +18,18 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=141185647]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=943325671]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/shadow_offset_x = 2
 text = "Score: "
 
-[node name="Score" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="Score" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1653461904]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -37,18 +37,18 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "0"
 
-[node name="Gap2" type="Control" parent="MarginContainer/HBoxContainer"]
+[node name="Gap2" type="Control" parent="MarginContainer/HBoxContainer" unique_id=1081666579]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="SnakeSizeLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="SnakeSizeLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=619013637]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Snake size:"
 
-[node name="SnakeSize" type="Label" parent="MarginContainer/HBoxContainer"]
+[node name="SnakeSize" type="Label" parent="MarginContainer/HBoxContainer" unique_id=296399704]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
@@ -56,7 +56,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "0"
 
-[node name="MenuButton" type="Button" parent="MarginContainer"]
+[node name="MenuButton" type="Button" parent="MarginContainer" unique_id=1129087723]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2

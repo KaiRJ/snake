@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp4lgygdp1f51"]
+[gd_scene format=3 uid="uid://dp4lgygdp1f51"]
 
 [ext_resource type="Script" uid="uid://dcyrku5i7phv6" path="res://scenes/items/item/item.gd" id="1_k5fmm"]
 [ext_resource type="Texture2D" uid="uid://bhc52hwe02yvd" path="res://scenes/managers/snake_manager/icon.svg" id="2_6apef"]
@@ -6,20 +6,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ouqkq"]
 size = Vector2(14, 14)
 
-[node name="Item" type="Node2D" groups=["item", "persist"]]
+[node name="Item" type="Node2D" unique_id=34740741 groups=["item", "persist"]]
 script = ExtResource("1_k5fmm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1675442195]
 scale = Vector2(0.125, 0.125)
 texture = ExtResource("2_6apef")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
+[node name="Area2D" type="Area2D" parent="." unique_id=297208318]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=306737529]
 shape = SubResource("RectangleShape2D_ouqkq")
 
-[node name="LifeTimeTimer" type="Timer" parent="."]
+[node name="LifeTimeTimer" type="Timer" parent="." unique_id=936587221]
 wait_time = 15.0
 one_shot = true
 autostart = true
