@@ -1,8 +1,7 @@
 class_name GrowthItem
 extends ItemResource
-## This item increases the snake size by 1.
 ##
-## When picked up this item signals the snake to not move its tail.
+## This item increases the snake size by 1.
 ##
 
 

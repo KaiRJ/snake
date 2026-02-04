@@ -7,18 +7,18 @@ extends Resource
 ##
 
 ## This is the name of the item.
-@export 
-var item_name: String
+@export var item_name: String
 
-## This is the icon for the item.
-@export 
-var icon: Texture2D
+## This is the texture for the item.
+@export var texture: Texture2D
+
+## How often this item will spawn
+@export var weight: int = 0
 
 ## This is how much score the item is worth.
-@export 
-var score: int = 0
+@export var score: int = 0
 
 
 ## This is the template function for an item to call when it is picked up.
 func apply_item(_snake_manager: SnakeManager) -> void:
-	push_error("apply_item() not implemented for item: %s" % item_name)
+	pass
