@@ -42,7 +42,8 @@ func _ready() -> void:
 	var tm_rect: Rect2i = tile_map.get_used_rect()
 	var tm_origin: Vector2i = tm_rect.position
 	var tm_size: Vector2i= tm_rect.size
-	var center: Vector2i = (tm_origin + (_step_size * (tm_size/2)) + _step_size/2)
+	@warning_ignore("integer_division")
+	var center: Vector2i = (tm_origin + (_step_size * tm_size/2) + _step_size/2)
 	global_position = center
 	
 	# defaults

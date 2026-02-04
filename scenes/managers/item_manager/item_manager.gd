@@ -39,6 +39,7 @@ func _ready() -> void:
 	
 	# Get the tilemap size and offset
 	var tm_tile_size: Vector2i = tile_map_layer.tile_set.tile_size
+	@warning_ignore("integer_division")
 	var offset: Vector2i = tm_tile_size/2
 	
 	# Get the coordinates of ALL the squares (-2 for border)
