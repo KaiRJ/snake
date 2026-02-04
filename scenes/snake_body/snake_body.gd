@@ -22,6 +22,7 @@ const curve_down_texture: Texture2D = preload("res://assets/gilla/curve_down.png
 
 
 func _ready() -> void:
+	GameEvents.game_over.connect(_on_game_over)
 	area.area_entered.connect(_on_area_entered)
 	body.texture = body_texture
 
@@ -48,6 +49,10 @@ func make(t: Type) -> void:
 			body.texture = curve_up_texture
 		Type.CURVE_DOWN:
 			body.texture = curve_down_texture
+
+
+func _on_game_over() -> void:
+	queue_free()
 
 
 ## If the head collides with an other snake body call the game over function

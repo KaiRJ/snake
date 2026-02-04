@@ -23,6 +23,7 @@ var direction: Vector2i
 
 
 func _ready() -> void:
+	GameEvents.game_over.connect(_on_game_over)
 	move.connect(snake_manager.move_snake)
 	
 	direction = Vector2i.RIGHT
@@ -38,6 +39,10 @@ func get_input() -> void:
 	for input: String in DIRECTIONS:
 		if Input.is_action_just_pressed(input):
 			direction = DIRECTIONS[input]
+
+
+func _on_game_over() -> void:
+	timer.stop()
 
 
 func _on_movement_timer_timeout() -> void:

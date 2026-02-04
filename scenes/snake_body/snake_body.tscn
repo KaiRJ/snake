@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bqoool8slo4fd"]
 
 [ext_resource type="Script" uid="uid://dsb8hxldl84xl" path="res://scenes/snake_body/snake_body.gd" id="1_lybl8"]
+[ext_resource type="PackedScene" uid="uid://cpqcbqmc74tol" path="res://scenes/components/death_component.tscn" id="2_lybl8"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2arxw"]
 load_path = "res://.godot/imported/body.png-8387043facbcce2734a65fef0787a243.ctex"
@@ -18,6 +19,9 @@ texture = SubResource("CompressedTexture2D_2arxw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=78193974]
 shape = SubResource("RectangleShape2D_lybl8")
+
+[node name="DeathComponent" parent="." unique_id=66561028 node_paths=PackedStringArray("sprite") instance=ExtResource("2_lybl8")]
+sprite = NodePath("../Body")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=896015696]
 target_position = Vector2(128, 0)

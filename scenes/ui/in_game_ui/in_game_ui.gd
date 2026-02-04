@@ -41,7 +41,7 @@ func _on_menu_button_pressed() -> void:
 
 
 func _on_game_over_signal() -> void:
-	get_tree().paused = true;
+	#get_tree().paused = true;
 	visible = false
 	
 	var in_game_menu: InGameMenu = in_game_menu_scene.instantiate()
