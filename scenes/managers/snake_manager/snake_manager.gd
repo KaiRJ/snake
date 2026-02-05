@@ -35,17 +35,16 @@ var _direction: Vector2i = Vector2i.RIGHT
 
 func _ready() -> void:	
 	# get dimensions of tile map layer
-	var tm_tile_size: Vector2i = tile_map.tile_set.tile_size
+	var tm_tile_size: Vector2 = tile_map.tile_set.tile_size
 	_step_size = tm_tile_size
 
 	# set position to centre of tilemap
 	var tm_rect: Rect2i = tile_map.get_used_rect()
-	var tm_origin: Vector2i = tm_rect.position
-	var tm_size: Vector2i= tm_rect.size
-	@warning_ignore("integer_division")
-	var center: Vector2i = (tm_origin + (_step_size * tm_size/2) + _step_size/2)
-	global_position = center
-	
+	var tm_origin: Vector2 = tm_rect.position
+	var tm_size: Vector2 = tm_rect.size
+	var center: Vector2 = tm_origin + (tm_tile_size * tm_size / 2.)
+	global_position = snapped(center, Vector2(16,16)) + (_step_size/2.)
+
 	# defaults
 	_direction = Vector2i.RIGHT
 	

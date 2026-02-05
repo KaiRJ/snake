@@ -35,6 +35,8 @@ snake_manager = NodePath("../SnakeManager")
 [node name="ItemManager" parent="." unique_id=1710823891 node_paths=PackedStringArray("tile_map_layer") instance=ExtResource("2_k2fmo")]
 tile_map_layer = NodePath("../TileMapLayer")
 item_types = Array[ExtResource("4_hujxm")]([ExtResource("10_blune"), ExtResource("5_yyfjg")])
+min_spawn_time = 10.0
+max_spawn_time = 15.0
 
 [node name="SaveManager" parent="." unique_id=1301734275 instance=ExtResource("9_b1x3f")]
 

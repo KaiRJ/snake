@@ -32,37 +32,38 @@ var _all_coordinates: Array[Vector2i]
 
 
 func _ready() -> void:	
-	# Get dimensions of tile map layer
+	# get dimensions of tile map layer
 	var tm_rect: Rect2i = tile_map_layer.get_used_rect()
 	var tm_origin: Vector2i = tm_rect.position
 	var tm_size: Vector2i = tm_rect.size
 	
-	# Get the tilemap size and offset
+	# get the tilemap size and offset
 	var tm_tile_size: Vector2i = tile_map_layer.tile_set.tile_size
 	@warning_ignore("integer_division")
 	var offset: Vector2i = tm_tile_size/2
 	
-	# Get the coordinates of ALL the squares (-2 for border)
+	# get the coordinates of ALL the squares (-2 for border)
 	for x: int in range(tm_size.x - tm_origin.x - 2):
 		for y: int in range(tm_size.y - tm_origin.y - 2):
 			var coord: Vector2i = (Vector2i(x+1,y+1) * tm_tile_size) + offset
 			_all_coordinates.append(coord)
 	
-	# Connect signals and start the spawn timer
+	# connect signals and start the spawn timer
 	GameEvents.game_over.connect(_on_game_over)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
-	spawn_timer.start(randf_range(min_spawn_time, max_spawn_time))
-
+	
+	# spawn item at start of game and start the timer
+	_on_spawn_timer_timeout()
 
 ## Create an array of all the free coordinates available to spawn an item in
 func get_free_coordinates() -> Array[Vector2i]:
 	var free_coords: Array[Vector2i] = _all_coordinates.duplicate()
 	
-	# Remove squares with snake bodies in them
+	# remove squares with snake bodies in them
 	for body: SnakeBody in get_tree().get_nodes_in_group("snake"):
 		free_coords.erase(Vector2i(body.global_position))
 		
-	# Remove squares with items in them
+	# remove squares with items in them
 	for item: Item in get_tree().get_nodes_in_group("item"):
 		free_coords.erase(Vector2i(item.global_position))
 			
@@ -77,7 +78,8 @@ func spawn_item(spawn_coords: Vector2i, item_type: ItemResource) -> void:
 	add_child(new_item)
 	new_item.make(item_type)
 	new_item.global_position = spawn_coords
-	
+	new_item.life_time_timer.start(randf_range(min_spawn_time, max_spawn_time))
+
 
 func pick_random_item() -> ItemResource:
 	var sum_of_weight: int = 0

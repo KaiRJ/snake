@@ -5,13 +5,14 @@ extends Node2D
 ## The script detects if a snake picks up the item and then applys the item.
 ##
 
-@onready var sprite: Sprite2D = $Sprite2D
+## Signal item has been picked up and what the score is
+signal picked_up(score: int)
 
 ## Resource to hold the item icon, score, and ability
 var item_type: ItemResource
 
-## Signal item has been picked up and what the score is
-signal picked_up(score: int)
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var life_time_timer: Timer = $LifeTimeTimer
 
 
 ## Initialise an item as a type
