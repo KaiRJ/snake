@@ -97,6 +97,12 @@ func spawn_item(spawn_coords: Vector2i, item_type: ItemResource) -> void:
 	new_item.life_time_timer.start(randf_range(min_spawn_time, max_spawn_time))
 
 
+
+func _on_item_picked_up(score: int) -> void:
+	total_score += score
+	call_deferred("spawn_random_item")
+	
+
 ## Save all the data of the item_manager to the saved_game resource
 func _on_save_game(saved_game: SavedGame) -> SavedGame:
 	saved_game.game_score = total_score
@@ -109,8 +115,3 @@ func _on_load_game(saved_game: SavedGame) -> void:
 	
 	for item: SavedItem in saved_game.saved_items:
 		spawn_item(item.position, item.item_type)
-
-
-func _on_item_picked_up(score: int) -> void:
-	total_score += score
-	spawn_random_item()

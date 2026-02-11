@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bqoool8slo4fd"]
 
 [ext_resource type="Script" uid="uid://dsb8hxldl84xl" path="res://scenes/snake_body/snake_body.gd" id="1_lybl8"]
-[ext_resource type="PackedScene" uid="uid://cpqcbqmc74tol" path="res://scenes/components/death_component.tscn" id="2_lybl8"]
+[ext_resource type="PackedScene" uid="uid://cpqcbqmc74tol" path="res://scenes/components/death_component/death_component.tscn" id="2_lybl8"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2arxw"]
 load_path = "res://.godot/imported/body.png-8387043facbcce2734a65fef0787a243.ctex"

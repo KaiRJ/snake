@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://crhs6chsfqnif" path="res://scenes/managers/snake_manager/snake_manager.gd" id="1_20sc0"]
 [ext_resource type="PackedScene" uid="uid://bqoool8slo4fd" path="res://scenes/snake_body/snake_body.tscn" id="2_t4wjm"]
+[ext_resource type="PackedScene" uid="uid://c645o5nqqq35b" path="res://scenes/components/movement_component/movement_component.tscn" id="3_42e26"]
 
 [node name="SnakeManager" type="Node2D" unique_id=1473176444 groups=["persist"]]
 script = ExtResource("1_20sc0")
 snake_body_scene = ExtResource("2_t4wjm")
+
+[node name="MovementComponent" parent="." unique_id=1466245822 instance=ExtResource("3_42e26")]
 
 [node name="Body" type="Node" parent="." unique_id=460145128]

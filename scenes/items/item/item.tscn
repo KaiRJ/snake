@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dp4lgygdp1f51"]
 
 [ext_resource type="Script" uid="uid://dcyrku5i7phv6" path="res://scenes/items/item/item.gd" id="1_k5fmm"]
-[ext_resource type="Texture2D" uid="uid://bhc52hwe02yvd" path="res://scenes/managers/snake_manager/icon.svg" id="2_6apef"]
+[ext_resource type="Texture2D" uid="uid://d0ie3058gjvdx" path="res://assets/items/speed.png" id="2_k5fmm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ouqkq"]
 size = Vector2(14, 14)
@@ -10,7 +10,7 @@ size = Vector2(14, 14)
 script = ExtResource("1_k5fmm")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1675442195]
-texture = ExtResource("2_6apef")
+texture = ExtResource("2_k5fmm")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=297208318]
 

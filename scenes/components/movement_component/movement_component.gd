@@ -1,13 +1,11 @@
-class_name MovementManager
+class_name MovementComponent
 extends Node
 ## Scene to manage the player input
 ##
 
-@onready var timer: Timer = $MovementTimer
+@onready var timer: Timer = $Timer
 
-@export var snake_manager: SnakeManager
-
-@export var timer_wait_time: float = 0.5
+@export var wait_time: float = 0.2
 
 ## Signal to emit which direction the player whats to move
 signal move(direction: Vector2i)
@@ -24,10 +22,10 @@ var direction: Vector2i
 
 func _ready() -> void:
 	GameEvents.game_over.connect(_on_game_over)
-	move.connect(snake_manager.move_snake)
+	
 	
 	direction = Vector2i.RIGHT
-	timer.start(timer_wait_time)
+	timer.start(wait_time)
 
 
 func _physics_process(_delta: float) -> void:

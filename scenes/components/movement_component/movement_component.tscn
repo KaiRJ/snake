@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c645o5nqqq35b"]
+
+[ext_resource type="Script" uid="uid://x5yshfp4c1of" path="res://scenes/components/movement_component/movement_component.gd" id="1_fykla"]
+
+[node name="MovementComponent" type="Node" unique_id=1466245822]
+script = ExtResource("1_fykla")
+
+[node name="Timer" type="Timer" parent="." unique_id=1595326583]
+
+[connection signal="timeout" from="Timer" to="." method="_on_movement_timer_timeout"]

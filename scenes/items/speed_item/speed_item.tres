@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SpeedItem" format=3 uid="uid://htvflky7cjc2"]
+
+[ext_resource type="Script" uid="uid://bjrndwqnm2kwk" path="res://scenes/items/speed_item/speed_item.gd" id="1_nre87"]
+[ext_resource type="Texture2D" uid="uid://d0ie3058gjvdx" path="res://assets/items/speed.png" id="2_oisep"]
+
+[resource]
+script = ExtResource("1_nre87")
+duration = 10.0
+item_name = "Speed"
+texture = ExtResource("2_oisep")
+weight = 5
+score = 10
+metadata/_custom_type_script = "uid://bjrndwqnm2kwk"

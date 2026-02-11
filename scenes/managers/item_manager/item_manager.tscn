@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c17g2krv38nqy" path="res://scenes/managers/item_manager/item_manager.gd" id="1_52qs8"]
 [ext_resource type="PackedScene" uid="uid://dp4lgygdp1f51" path="res://scenes/items/item/item.tscn" id="2_5i0rd"]
-[ext_resource type="Script" uid="uid://d3bi5mgkgcc44" path="res://scenes/items/item_resource/item_resource.gd" id="3_dqix0"]
-[ext_resource type="Resource" uid="uid://cyohq73so5pn5" path="res://scenes/items/item_resource/growth_item/growth_resource.tres" id="4_lrv41"]
+[ext_resource type="Script" uid="uid://d3bi5mgkgcc44" path="res://scenes/items/item_resource.gd" id="3_dqix0"]
+[ext_resource type="Resource" uid="uid://cyohq73so5pn5" path="res://scenes/items/growth_item/growth_resource.tres" id="4_lrv41"]
 
 [node name="ItemManager" type="Node" unique_id=1092224049 groups=["persist"]]
 script = ExtResource("1_52qs8")

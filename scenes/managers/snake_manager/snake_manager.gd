@@ -6,6 +6,7 @@ extends Node2D
 ## the game. 
 ##
 
+@onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _body: Node = $Body
 
 ## The tile map the snake is moving in
@@ -33,7 +34,9 @@ var _rotation: float = 0.0
 var _direction: Vector2i = Vector2i.RIGHT
 
 
-func _ready() -> void:	
+func _ready() -> void:
+	_movement_component.move.connect(move_snake)
+	
 	# get dimensions of tile map layer
 	var tm_tile_size: Vector2 = tile_map.tile_set.tile_size
 	_step_size = tm_tile_size
