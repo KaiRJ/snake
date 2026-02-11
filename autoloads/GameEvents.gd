@@ -3,9 +3,6 @@ extends Node
 ##
 ##
 
-## This signal is used to signal that a new game is starting.
-#signal start_game
-
 ## This signal is used to signal that the game has ended.
 @warning_ignore("unused_signal")
 signal game_over
@@ -20,6 +17,8 @@ signal save_game
 
 
 const SAVE_FILE: String = "user://savegame.tres"
+const LEADERBOARD_FILE: String = "user://leaderboard.tres"
+
 
 ## Go back to main menu
 func quit_game() -> void:

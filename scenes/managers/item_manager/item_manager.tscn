@@ -9,5 +9,3 @@
 script = ExtResource("1_52qs8")
 item_scene = ExtResource("2_5i0rd")
 item_types = Array[ExtResource("3_dqix0")]([ExtResource("4_lrv41")])
-
-[node name="SpawnTimer" type="Timer" parent="." unique_id=795441076]

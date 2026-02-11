@@ -1,0 +1,141 @@
+[gd_scene format=3 uid="uid://dclhso4upc0od"]
+
+[ext_resource type="Script" uid="uid://ddhcivhlg30g8" path="res://scenes/ui/leaderboard/leaderboard.gd" id="1_fh5s4"]
+
+[node name="Leaderboard" type="Control" unique_id=1198328977]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fh5s4")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1213359756]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1566794323]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1129761817]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=2107863715]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Leaderboard"
+horizontal_alignment = 1
+
+[node name="EnterNameContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=69680793]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="MessageLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/EnterNameContainer" unique_id=1922432743]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enter you name below:"
+
+[node name="NameInput" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/EnterNameContainer" unique_id=353902388]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="EnterButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/EnterNameContainer" unique_id=2041657645]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Enter"
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1350527613]
+layout_mode = 2
+columns = 2
+
+[node name="FirstName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=367143016]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1. "
+
+[node name="FirstScore" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=518657597]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SecondName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=53396746]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2. "
+
+[node name="SecondScore" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1476152844]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ThirdName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=321049365]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3. "
+
+[node name="ThirdScore" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=555694841]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FourthName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=167563233]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "4. "
+
+[node name="FourthScore" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=99111665]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="FithName" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=1652798524]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "5. "
+
+[node name="FithScore" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/GridContainer" unique_id=426196151]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1498862232]
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1297681443]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Quit"
+
+[node name="ClearButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=876266468]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Clear"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/EnterNameContainer/EnterButton" to="." method="_on_enter_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer2/ClearButton" to="." method="_on_clear_button_pressed"]

@@ -127,7 +127,7 @@ func update_neck_rotation() -> void:
 		neck.rotation = head.rotation
 
 
-func on_save_game(saved_game: SavedGame) -> SavedGame:
+func _on_save_game(saved_game: SavedGame) -> SavedGame:
 	var saved_snake: SavedSnake = SavedSnake.new()
 	saved_snake.position = global_position
 	saved_snake.grow = grow
@@ -145,7 +145,7 @@ func on_save_game(saved_game: SavedGame) -> SavedGame:
 	return saved_game
 
 
-func on_load_game(saved_game: SavedGame) -> void:
+func _on_load_game(saved_game: SavedGame) -> void:
 	global_position = saved_game.saved_snake.position
 	grow = saved_game.saved_snake.grow
 	_rotation = saved_game.saved_snake.rotation

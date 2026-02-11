@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c645o5nqqq35b" path="res://scenes/managers/movement_manager/movement_manager.tscn" id="6_a8run"]
 [ext_resource type="PackedScene" uid="uid://1tcei4qfycpd" path="res://scenes/managers/save_manager/save_manager.tscn" id="9_b1x3f"]
 [ext_resource type="Resource" uid="uid://d0x1whq642gyw" path="res://scenes/items/item_resource/score_item/score_item.tres" id="10_blune"]
-[ext_resource type="PackedScene" uid="uid://cxj0741v35slf" path="res://scenes/ui/main_menu/main_menu.tscn" id="11_ouso4"]
+[ext_resource type="PackedScene" uid="uid://bovgctf2a1hys" path="res://scenes/managers/menu_manager/menu_manager.tscn" id="12_blune"]
 
 [node name="Main" type="Node" unique_id=1648802435]
 script = ExtResource("1_yyfjg")
@@ -31,14 +31,13 @@ tile_map = NodePath("../TileMapLayer")
 
 [node name="MovementManager" parent="." unique_id=1083583130 node_paths=PackedStringArray("snake_manager") instance=ExtResource("6_a8run")]
 snake_manager = NodePath("../SnakeManager")
+timer_wait_time = 0.2
 
 [node name="ItemManager" parent="." unique_id=1710823891 node_paths=PackedStringArray("tile_map_layer") instance=ExtResource("2_k2fmo")]
 tile_map_layer = NodePath("../TileMapLayer")
 item_types = Array[ExtResource("4_hujxm")]([ExtResource("10_blune"), ExtResource("5_yyfjg")])
-min_spawn_time = 10.0
-max_spawn_time = 15.0
 
 [node name="SaveManager" parent="." unique_id=1301734275 instance=ExtResource("9_b1x3f")]
 
-[node name="MainMenu" parent="." unique_id=1090839423 node_paths=PackedStringArray("in_game_ui") instance=ExtResource("11_ouso4")]
+[node name="MenuManager" parent="." unique_id=1137085425 node_paths=PackedStringArray("in_game_ui") instance=ExtResource("12_blune")]
 in_game_ui = NodePath("../InGameUI")

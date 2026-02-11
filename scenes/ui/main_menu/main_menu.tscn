@@ -50,6 +50,7 @@ size_flags_vertical = 0
 text = "Load Game"
 
 [node name="LeaderboardButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1422503298]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Leaderboard"
 

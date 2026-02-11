@@ -7,8 +7,6 @@ extends Node
 ## item_types on the map.
 ##
 
-@onready var spawn_timer: Timer = $SpawnTimer
-
 ## The TileMapLayer the snake is moving in
 @export var tile_map_layer: TileMapLayer
 
@@ -31,7 +29,7 @@ var total_score: int = 0
 var _all_coordinates: Array[Vector2i]
 
 
-func _ready() -> void:	
+func _ready() -> void:
 	# get dimensions of tile map layer
 	var tm_rect: Rect2i = tile_map_layer.get_used_rect()
 	var tm_origin: Vector2i = tm_rect.position
@@ -48,12 +46,14 @@ func _ready() -> void:
 			var coord: Vector2i = (Vector2i(x+1,y+1) * tm_tile_size) + offset
 			_all_coordinates.append(coord)
 	
-	# connect signals and start the spawn timer
-	GameEvents.game_over.connect(_on_game_over)
-	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
-	
-	# spawn item at start of game and start the timer
-	_on_spawn_timer_timeout()
+	spawn_random_item()
+
+
+func spawn_random_item() -> void:
+	var random_coords: Vector2i = get_free_coordinates().pick_random()
+	var item_type: ItemResource = pick_random_item()
+	spawn_item(random_coords, item_type)
+
 
 ## Create an array of all the free coordinates available to spawn an item in
 func get_free_coordinates() -> Array[Vector2i]:
@@ -68,17 +68,6 @@ func get_free_coordinates() -> Array[Vector2i]:
 		free_coords.erase(Vector2i(item.global_position))
 			
 	return free_coords
-
-
-## Spawn a random item in a specific location
-func spawn_item(spawn_coords: Vector2i, item_type: ItemResource) -> void:
-	var new_item: Item = item_scene.instantiate()
-	new_item.picked_up.connect(_on_item_picked_up)
-	
-	add_child(new_item)
-	new_item.make(item_type)
-	new_item.global_position = spawn_coords
-	new_item.life_time_timer.start(randf_range(min_spawn_time, max_spawn_time))
 
 
 func pick_random_item() -> ItemResource:
@@ -97,30 +86,31 @@ func pick_random_item() -> ItemResource:
 	return random_item
 
 
+## Spawn a random item in a specific location
+func spawn_item(spawn_coords: Vector2i, item_type: ItemResource) -> void:
+	var new_item: Item = item_scene.instantiate()
+	new_item.picked_up.connect(_on_item_picked_up)
+	
+	add_child(new_item)
+	new_item.make(item_type)
+	new_item.global_position = spawn_coords
+	new_item.life_time_timer.start(randf_range(min_spawn_time, max_spawn_time))
+
+
 ## Save all the data of the item_manager to the saved_game resource
-func on_save_game(saved_game: SavedGame) -> SavedGame:
+func _on_save_game(saved_game: SavedGame) -> SavedGame:
 	saved_game.game_score = total_score
 	return saved_game
 	
 	
 ## Load all the data from the saved_game resource
-func on_load_game(saved_game: SavedGame) -> void:
+func _on_load_game(saved_game: SavedGame) -> void:
 	total_score = saved_game.game_score
 	
 	for item: SavedItem in saved_game.saved_items:
 		spawn_item(item.position, item.item_type)
 
 
-func _on_spawn_timer_timeout() -> void:
-	var random_coords: Vector2i = get_free_coordinates().pick_random()
-	var item_type: ItemResource = pick_random_item()
-	spawn_item(random_coords, item_type)
-	spawn_timer.start(randf_range(min_spawn_time, max_spawn_time))
-	
-
 func _on_item_picked_up(score: int) -> void:
 	total_score += score
-	
-
-func _on_game_over() -> void:
-	spawn_timer.stop()
+	spawn_random_item()

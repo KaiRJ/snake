@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bovgctf2a1hys"]
+
+[ext_resource type="Script" uid="uid://d1y2rwapd7ox7" path="res://scenes/managers/menu_manager/menu_manager.gd" id="1_gktx5"]
+[ext_resource type="PackedScene" uid="uid://dclhso4upc0od" path="res://scenes/ui/leaderboard/leaderboard.tscn" id="2_3weyr"]
+[ext_resource type="PackedScene" uid="uid://cxj0741v35slf" path="res://scenes/ui/main_menu/main_menu.tscn" id="2_p2kbe"]
+
+[node name="MenuManager" type="Control" unique_id=1137085425]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gktx5")
+main_menu_scene = ExtResource("2_p2kbe")
+leaderboard_scene = ExtResource("2_3weyr")

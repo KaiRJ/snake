@@ -15,11 +15,6 @@ extends CanvasLayer
 @export var snake_manager: SnakeManager
 
 
-func _ready() -> void:
-	visible = false
-	GameEvents.game_over.connect(_on_game_over_signal)
-
-
 func _process(_delta: float) -> void:
 	if item_manager == null:
 		return 
@@ -31,22 +26,12 @@ func _process(_delta: float) -> void:
 
 
 func _on_menu_button_pressed() -> void:
-	get_tree().paused = true;
+	get_tree().paused = true
 	visible = false
 	
 	var in_game_menu: InGameMenu = in_game_menu_scene.instantiate()
 	in_game_menu.resume.connect(_on_in_game_menu_resume)
 	get_parent().add_child(in_game_menu)
-	in_game_menu.make_in_game_menu()
-
-
-func _on_game_over_signal() -> void:
-	#get_tree().paused = true;
-	visible = false
-	
-	var in_game_menu: InGameMenu = in_game_menu_scene.instantiate()
-	get_parent().add_child(in_game_menu)
-	in_game_menu.make_game_over_menu()
 
 
 func _on_in_game_menu_resume() -> void:

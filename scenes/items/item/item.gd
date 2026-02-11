@@ -22,7 +22,7 @@ func make(type: ItemResource) -> void:
 
 
 ## Save all the data of the item_manager to the saved_game resource
-func on_save_game(saved_game: SavedGame) -> SavedGame:
+func _on_save_game(saved_game: SavedGame) -> SavedGame:
 	var saved_item: SavedItem = SavedItem.new()
 	saved_item.position = global_position
 	saved_item.item_type = item_type
@@ -31,7 +31,7 @@ func on_save_game(saved_game: SavedGame) -> SavedGame:
 	
 
 ## Remove item on a load game.
-func on_load_game(_saved_game: SavedGame) -> void:
+func _on_load_game(_saved_game: SavedGame) -> void:
 	queue_free()
 
 
@@ -46,4 +46,4 @@ func _on_area_entered(area: Area2D) -> void:
 
 ## Delete this item on the timer timeout.
 func _on_life_time_timer_timeout() -> void:
-	queue_free()
+	picked_up.emit(0)
