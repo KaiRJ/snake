@@ -100,6 +100,7 @@ func spawn_item(spawn_coords: Vector2i, item_type: ItemResource) -> void:
 
 func _on_item_picked_up(score: int) -> void:
 	total_score += score
+	await get_tree().create_timer(2.0).timeout  # Waits 2 seconds
 	call_deferred("spawn_random_item")
 	
 

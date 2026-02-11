@@ -18,7 +18,7 @@ texture = ExtResource("2_k5fmm")
 shape = SubResource("RectangleShape2D_ouqkq")
 
 [node name="LifeTimeTimer" type="Timer" parent="." unique_id=936587221]
-wait_time = 15.0
+wait_time = 2.0
 one_shot = true
 autostart = true
 

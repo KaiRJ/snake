@@ -6,9 +6,6 @@ extends Resource
 ## easily apply items without checking types.
 ##
 
-## This is the name of the item.
-@export var item_name: String
-
 ## This is the texture for the item.
 @export var texture: Texture2D
 

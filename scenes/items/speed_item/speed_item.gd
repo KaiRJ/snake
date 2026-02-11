@@ -14,4 +14,6 @@ func apply_item(snake_manager: SnakeManager) -> void:
 	var speed_increase: float = multiplier * snake_manager._movement_component.wait_time
 	timer.wait_time -= speed_increase
 	await snake_manager.get_tree().create_timer(duration).timeout
-	timer.wait_time += speed_increase
+	
+	if is_instance_valid(timer):
+		timer.wait_time += speed_increase

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_nre87")
 duration = 10.0
-item_name = "Speed"
+multiplier = 0.3
 texture = ExtResource("2_oisep")
 weight = 5
 score = 10

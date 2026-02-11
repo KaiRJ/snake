@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DeathItem" format=3 uid="uid://brciimc35yv37"]
+
+[ext_resource type="Script" uid="uid://dp8t577rrvlpo" path="res://scenes/items/death_item/death_item.gd" id="1_dses2"]
+[ext_resource type="Texture2D" uid="uid://dylrq7ukr1su6" path="res://assets/items/death.png" id="2_5834j"]
+
+[resource]
+script = ExtResource("1_dses2")
+texture = ExtResource("2_5834j")
+weight = 5
+metadata/_custom_type_script = "uid://dp8t577rrvlpo"

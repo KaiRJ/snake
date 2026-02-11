@@ -47,3 +47,4 @@ func _on_area_entered(area: Area2D) -> void:
 ## Delete this item on the timer timeout.
 func _on_life_time_timer_timeout() -> void:
 	picked_up.emit(0)
+	queue_free()

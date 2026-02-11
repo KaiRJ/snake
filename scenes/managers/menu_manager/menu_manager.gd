@@ -34,6 +34,7 @@ func _on_start_game() -> void:
 
 func _on_game_over() -> void:
 	in_game_ui.visible = false
+	await get_tree().create_timer(2.0).timeout  # Waits 2 seconds
 	var leaderboard: Leaderboard = spawn_leaderboard()
 	var score: int = int(in_game_ui.score_label.text)
 	leaderboard.pass_score(score)
