@@ -9,6 +9,6 @@ script = ExtResource("1_20sc0")
 snake_body_scene = ExtResource("2_t4wjm")
 
 [node name="MovementComponent" parent="." unique_id=1466245822 instance=ExtResource("3_42e26")]
-wait_time = 0.3
+wait_time = 0.25
 
 [node name="Body" type="Node" parent="." unique_id=460145128]
