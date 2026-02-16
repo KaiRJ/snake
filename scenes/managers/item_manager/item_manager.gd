@@ -8,7 +8,7 @@ extends Node
 ##
 
 ## The TileMapLayer the snake is moving in
-@export var tile_map_layer: TileMapLayer
+@export var game_tile_map: GameTileMap
 
 ## The base item type
 @export var item_scene: PackedScene
@@ -25,49 +25,15 @@ extends Node
 ## Variable to hold the total score from all the items picked up
 var total_score: int = 0
 
-## Variable to hold all the coordinents of the grid
-var _all_coordinates: Array[Vector2i]
-
 
 func _ready() -> void:
-	# get dimensions of tile map layer
-	var tm_rect: Rect2i = tile_map_layer.get_used_rect()
-	var tm_origin: Vector2i = tm_rect.position
-	var tm_size: Vector2i = tm_rect.size
-	
-	# get the tilemap size and offset
-	var tm_tile_size: Vector2i = tile_map_layer.tile_set.tile_size
-	@warning_ignore("integer_division")
-	var offset: Vector2i = tm_tile_size/2
-	
-	# get the coordinates of ALL the squares (-2 for border)
-	for x: int in range(tm_size.x - tm_origin.x - 2):
-		for y: int in range(tm_size.y - tm_origin.y - 2):
-			var coord: Vector2i = (Vector2i(x+1,y+1) * tm_tile_size) + offset
-			_all_coordinates.append(coord)
-	
 	spawn_random_item()
 
 
 func spawn_random_item() -> void:
-	var random_coords: Vector2i = get_free_coordinates().pick_random()
+	var random_coords: Vector2i = game_tile_map.get_free_coordinates().pick_random()
 	var item_type: ItemResource = pick_random_item()
 	spawn_item(random_coords, item_type)
-
-
-## Create an array of all the free coordinates available to spawn an item in
-func get_free_coordinates() -> Array[Vector2i]:
-	var free_coords: Array[Vector2i] = _all_coordinates.duplicate()
-	
-	# remove squares with snake bodies in them
-	for body: SnakeBody in get_tree().get_nodes_in_group("snake"):
-		free_coords.erase(Vector2i(body.global_position))
-		
-	# remove squares with items in them
-	for item: Item in get_tree().get_nodes_in_group("item"):
-		free_coords.erase(Vector2i(item.global_position))
-			
-	return free_coords
 
 
 func pick_random_item() -> ItemResource:

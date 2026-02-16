@@ -9,8 +9,8 @@ extends Node2D
 @onready var _movement_component: MovementComponent = $MovementComponent
 @onready var _body: Node = $Body
 
-## The tile map the snake is moving in
-@export var tile_map: TileMapLayer
+## The TileMapLayer the snake is moving in
+@export var game_tile_map: GameTileMap
 
 ## Initial snake size
 @export var init_size: int = 4
@@ -25,7 +25,7 @@ var snake_body_parts: Array[SnakeBody]
 var grow: bool = false
 
 ## Size of the tiles used in TILE_MAP
-var _step_size: Vector2i
+var _step_size: Vector2i = Vector2i.ONE * 16
 
 ## The current rotation of the snake in radians
 var _rotation: float = 0.0
@@ -37,19 +37,7 @@ var _direction: Vector2i = Vector2i.RIGHT
 func _ready() -> void:
 	_movement_component.move.connect(move_snake)
 	
-	# get dimensions of tile map layer
-	var tm_tile_size: Vector2 = tile_map.tile_set.tile_size
-	_step_size = tm_tile_size
-
-	# set position to centre of tilemap
-	var tm_rect: Rect2i = tile_map.get_used_rect()
-	var tm_origin: Vector2 = tm_rect.position
-	var tm_size: Vector2 = tm_rect.size
-	var center: Vector2 = tm_origin + (tm_tile_size * tm_size / 2.)
-	global_position = snapped(center, Vector2(16,16)) + (_step_size/2.)
-
-	# defaults
-	_direction = Vector2i.RIGHT
+	global_position = game_tile_map.get_center() - Vector2i(_step_size.y * init_size, 0)
 	
 	# instantiate the snake body parts
 	for i: int in range(init_size):
