@@ -16,12 +16,6 @@ extends Node
 ## Resources for the different types of item
 @export var item_types: Array[ItemResource]
 
-## The minimum sqawn time for an item
-@export var min_spawn_time: float = 5.0
-
-## The maximum sqawn time for an item
-@export var max_spawn_time: float = 10.0
-
 ## Variable to hold the total score from all the items picked up
 var total_score: int = 0
 
@@ -60,8 +54,7 @@ func spawn_item(spawn_coords: Vector2i, item_type: ItemResource) -> void:
 	add_child(new_item)
 	new_item.make(item_type)
 	new_item.global_position = spawn_coords
-	new_item.life_time_timer.start(randf_range(min_spawn_time, max_spawn_time))
-
+	new_item.life_time_timer.start(item_type.lifetime)
 
 
 func _on_item_picked_up(score: int) -> void:

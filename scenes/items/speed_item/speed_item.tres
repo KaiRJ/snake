@@ -10,4 +10,5 @@ multiplier = 0.3
 texture = ExtResource("2_oisep")
 weight = 5
 score = 10
+lifetime = 8
 metadata/_custom_type_script = "uid://bjrndwqnm2kwk"

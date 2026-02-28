@@ -15,6 +15,9 @@ extends Resource
 ## This is how much score the item is worth.
 @export var score: int = 0
 
+## How long before the item despawns
+@export var lifetime: int = 10
+
 
 ## This is the template function for an item to call when it is picked up.
 func apply_item(_snake_manager: SnakeManager) -> void:
