@@ -1,5 +1,5 @@
 class_name InGameMenu
-extends CenterContainer
+extends CanvasLayer
 ## The in game menu scene for resuming, restarting, saving, and quiting the game.
 ##
 

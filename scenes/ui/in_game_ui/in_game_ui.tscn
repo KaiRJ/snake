@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://3fylcjfjep4d" path="res://scenes/ui/in_game_menu/in_game_menu.tscn" id="2_rakhe"]
 
 [node name="InGameUI" type="CanvasLayer" unique_id=728459449]
+layer = 2
 script = ExtResource("1_nopjh")
 in_game_menu_scene = ExtResource("2_rakhe")
 

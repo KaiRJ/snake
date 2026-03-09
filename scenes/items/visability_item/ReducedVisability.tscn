@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bwifehsvbei3r"]
+
+[ext_resource type="Shader" uid="uid://dsoryh4nngji2" path="res://scenes/items/visability_item/ReducedVisability.gdshader" id="1_56pti"]
+[ext_resource type="Script" uid="uid://ct88ilavxakal" path="res://scenes/items/visability_item/reduced_visability.gd" id="1_n13u1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n13u1"]
+shader = ExtResource("1_56pti")
+shader_parameter/centre = Vector2(0, 0)
+shader_parameter/radius = 80.0
+
+[node name="ReducedVisability" type="CanvasLayer" unique_id=2123993111]
+script = ExtResource("1_n13u1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1544326140]
+material = SubResource("ShaderMaterial_n13u1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.24705882, 0.14901961, 0.19215687, 1)
+metadata/_edit_lock_ = true
+
+[node name="Timer" type="Timer" parent="." unique_id=701230233]
+wait_time = 10.0
+autostart = true

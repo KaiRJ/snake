@@ -7,6 +7,6 @@
 script = ExtResource("2_5phtu")
 texture = ExtResource("2_qidmm")
 weight = 5
-score = 10
+score = 40
 lifetime = 12
 metadata/_custom_type_script = "uid://b1n1x0ht46wtg"

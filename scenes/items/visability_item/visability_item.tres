@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="VisabilityItem" format=3 uid="uid://bbrlaxb8e72i4"]
+
+[ext_resource type="PackedScene" uid="uid://bwifehsvbei3r" path="res://scenes/items/visability_item/ReducedVisability.tscn" id="1_4pgl8"]
+[ext_resource type="Script" uid="uid://cmw73603pmwe" path="res://scenes/items/visability_item/visability_item.gd" id="1_xc8s7"]
+[ext_resource type="Texture2D" uid="uid://dm4ncrl3hvrtr" path="res://assets/items/visability.png" id="2_fmi8x"]
+
+[resource]
+script = ExtResource("1_xc8s7")
+reduced_visability_scene = ExtResource("1_4pgl8")
+texture = ExtResource("2_fmi8x")
+weight = 8
+score = 40
+lifetime = 15
+metadata/_custom_type_script = "uid://cmw73603pmwe"

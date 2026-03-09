@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dxv633oac5dey" path="res://scenes/managers/obstacle_manager/obstacle_manager.tscn" id="6_7smn1"]
 [ext_resource type="PackedScene" uid="uid://1tcei4qfycpd" path="res://scenes/managers/save_manager/save_manager.tscn" id="9_b1x3f"]
 [ext_resource type="Resource" uid="uid://d0x1whq642gyw" path="res://scenes/items/score_item/score_item.tres" id="10_blune"]
+[ext_resource type="Resource" uid="uid://bbrlaxb8e72i4" path="res://scenes/items/visability_item/visability_item.tres" id="11_7smn1"]
 [ext_resource type="Resource" uid="uid://htvflky7cjc2" path="res://scenes/items/speed_item/speed_item.tres" id="11_th5th"]
 [ext_resource type="Resource" uid="uid://brciimc35yv37" path="res://scenes/items/death_item/death_item.tres" id="12_7smn1"]
 [ext_resource type="PackedScene" uid="uid://bovgctf2a1hys" path="res://scenes/managers/menu_manager/menu_manager.tscn" id="12_blune"]
@@ -29,7 +30,7 @@ amount_to_spawn = 6
 
 [node name="ItemManager" parent="." unique_id=1710823891 node_paths=PackedStringArray("game_tile_map") instance=ExtResource("2_k2fmo")]
 game_tile_map = NodePath("../GameTileMap")
-item_types = Array[ExtResource("4_hujxm")]([ExtResource("10_blune"), ExtResource("5_yyfjg"), ExtResource("11_th5th"), ExtResource("12_7smn1")])
+item_types = Array[ExtResource("4_hujxm")]([ExtResource("10_blune"), ExtResource("5_yyfjg"), ExtResource("11_th5th"), ExtResource("12_7smn1"), ExtResource("11_7smn1")])
 
 [node name="SnakeManager" parent="." unique_id=1085349641 node_paths=PackedStringArray("game_tile_map") instance=ExtResource("3_k2fmo")]
 game_tile_map = NodePath("../GameTileMap")

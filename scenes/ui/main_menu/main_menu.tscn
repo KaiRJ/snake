@@ -2,17 +2,16 @@
 
 [ext_resource type="Script" uid="uid://d3fpkf8yev0hq" path="res://scenes/ui/main_menu/main_menu.gd" id="1_1ch07"]
 
-[node name="MainMenu" type="CenterContainer" unique_id=1090839423]
+[node name="MainMenu" type="CanvasLayer" unique_id=1754529396]
 process_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layer = 2
 script = ExtResource("1_1ch07")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=769706056]
-layout_mode = 2
+offset_left = 99.0
+offset_top = 51.0
+offset_right = 460.0
+offset_bottom = 268.0
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=2069626739]
 layout_mode = 2

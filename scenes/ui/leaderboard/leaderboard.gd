@@ -1,5 +1,5 @@
 class_name Leaderboard
-extends Control
+extends CanvasLayer
 
 @onready var title_label: Label = %TitleLabel
 @onready var enter_name_container: HBoxContainer = %EnterNameContainer

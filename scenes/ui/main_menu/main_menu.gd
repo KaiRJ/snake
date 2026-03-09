@@ -1,5 +1,5 @@
 class_name MainMenu
-extends CenterContainer
+extends CanvasLayer
 
 @onready var load_button: Button = $%LoadGameButton
 

@@ -59,4 +59,4 @@ func _on_game_over() -> void:
 func _on_area_entered(incoming: Area2D) -> void:
 	# Check if head to make sure game over is only called once
 	if (incoming.get_parent() is SnakeBody) and (type == Type.HEAD): 
-			GameEvents.game_over.emit()
+		GameEvents.game_over.emit()
