@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://5x78it3hfti7"]
 
 [ext_resource type="Script" uid="uid://cn2cc23qm11ku" path="res://scenes/obstacle/obstacle.gd" id="1_atq4q"]
-[ext_resource type="Texture2D" uid="uid://cbp0shcucho4e" path="res://scenes/obstacle/assets/icon.svg" id="2_1ys07"]
+[ext_resource type="Texture2D" uid="uid://bnubhyd4grytx" path="res://assets/obstacles/cactus.png" id="2_1ys07"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8tac7"]
 size = Vector2(16, 16)

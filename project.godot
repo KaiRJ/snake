@@ -14,10 +14,10 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Snake"
+config/name="Gilla Snake"
 run/main_scene="uid://dk6ca2tumgk3g"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://scenes/managers/snake_manager/icon.svg"
+config/icon="uid://xe6dcf7i026c"
 
 [autoload]
 

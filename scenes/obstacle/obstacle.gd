@@ -8,7 +8,6 @@ extends Node2D
 
 func _ready() -> void:
 	sprite_2d.texture = textures.pick_random()
-	sprite_2d.scale = Vector2.ONE / 8
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
